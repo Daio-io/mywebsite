@@ -1,5 +1,5 @@
 var appRouteConfig = require('./config.js');
 
-var app = angular.module('mainapp', ['ngRoute']):
+var app = angular.module('mainapp', ['ngRoute']);
 
 app.config(appRouteConfig.config);

@@ -24,6 +24,7 @@
     "gulp": "^3.8.8",
     "gulp-browserify": "^0.5.0",
     "gulp-mocha": "^1.1.1",
+    "gulp-rename": "^1.2.0",
     "mocha": "^1.21.5",
     "restler": "^3.2.2"
   }
