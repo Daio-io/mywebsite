@@ -1,21 +1,18 @@
 <!doctype html>
 
 <html>
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
     <title>Daveloper</title>
-    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.js"></script>
+    <script src="angular/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular-route.js"></script>
     <script src="js/build.js"></script>
     <!-- Loading Bootstrap -->
     <link href="flat-ui/bootstrap/css/bootstrap.css" rel="stylesheet">
     <!-- <link href="/animation/ani.css" rel="stylesheet"> -->
-
     <!-- Loading Flat UI -->
     <link href="flat-ui/css/flat-ui.css" rel="stylesheet">
-
     <header>
         <div class="container">
             <div class="jumbotron header-board">
@@ -24,10 +21,10 @@
                     I'm Dai.
                 </h1>
                 <div>
-                    <button class="btn btn-primary">About</button>
+                    <a href="/#/about" class="btn btn-primary">About</a>
                     <button class="btn btn-primary">Projects</button>
                     <button class="btn btn-primary">Blog</button>
-                    <button class="btn btn-primary">Im Bored. Give me a game</button>
+                    <button class="btn btn-primary">Im Bored..</button>
                 </div>
             </div>
 
@@ -35,18 +32,8 @@
     </header>
 </head>
 
-<body>
-    <div class="container">
-        <div>
-            BBC Software Engineer. Love working with Android, Node and Angular.
-        </div>
-        <div>
-            What I have done:
-        </div>
-        <div>
-            Contact me: email: github: twitter:
-        </div>
-    </div>
+<body ng-app="mainapp">
+    <div ng-view=""></div>
 
 </body>
 
