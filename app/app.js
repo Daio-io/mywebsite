@@ -5,7 +5,7 @@ var BlogCtrl = require('./controllers/BlogCtrl.js');
 var ProjectCtrl = require('./controllers/ProjectCtrl.js');
 
 var appRouteConfig = require('./config.js');
-app.config(appRouteConfig.config);
+app.config(['$routeProvider', '$locationProvider', appRouteConfig.config]);
 
 app.controller('MainController', ['$scope', MainCtrl.MainController]);
 app.controller('AboutController', ['$scope', AboutCtrl.AboutController]);
