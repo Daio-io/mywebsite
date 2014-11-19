@@ -6,7 +6,9 @@ exports.index =  function (req, res) {
 
 exports.partial = function (req, res) {
   
-    res.render(req.params.file);
+    var directory = req.params.directory;
+    var file = req.params.file;
+    res.render(directory + '/' + file);
     
 };
                             

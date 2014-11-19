@@ -1,6 +1,6 @@
 exports.MainController = function ($scope) {
 
-    $scope.word = 'hello';
+    $scope.word = 'home';
 
 
 };

@@ -2,50 +2,85 @@
 exports.config = function ($routeProvider, $locationProvider) {
     $routeProvider.
 
-    when('/about', {
-        templateUrl: "/views/about",
-        controller: 'MainController'
+    when('/', {
+        controller: 'MainController',
+        templateUrl: "/views/partial/main"
 
-    });
+    }).
     
+    when('/about', {
+        controller: 'AboutController',
+        templateUrl: "/views/partial/about"
+
+    }).
+    
+    when('/projects', {
+        controller: 'ProjectController',
+        templateUrl: 'views/partial/projects'
+    }).
+    
+    when('/projects/:id', {
+        controller: 'ProjectController',
+        templateUrl: 'views/partial/projects'
+    }).
+
+    when('/blog', {
+        controller: 'BlogController',
+        templateUrl: 'views/partial/blog'
+    }).
+
+    when('/blog/:id', {
+        controller: 'BlogController',
+        templateUrl: 'views/partial/blogdetail'
+    }).
+    
+    otherwise({
+        redirectTo: '/'
+    });
+
     $locationProvider.html5Mode(true);
 };
-
-//    when('/projects', {
-//        controller: 'ProjectController',
-//        templateUrl: 'views/projects.html'
-//    }).
-//
-//    when('/about', {
-//        controller: 'AboutController',
-//        templateUrl: 'views/about.html'
-//    }).
-//
-//    when('/blog', {
-//        controller: 'BlogController',
-//        templateUrl: 'views/blog.html'
-//    }).
-//
-//    when('/blog/:id', {
-//        controller: 'BlogController',
-//        templateUrl: 'views/blogdetail.html'
-//    }).
-
-//'<div class="container"><div> {{word}} BBC Software Engineer. Love working with Android, Node and Angular </div><div>What I have done:</div><div>Contact me: email: github: twitter:</div></div>'
 },{}],2:[function(require,module,exports){
-exports.MainController = function ($scope) {
+exports.AboutController = function ($scope) {
 
-    $scope.word = 'hello';
+    $scope.word = 'About';
 
 
 };
 },{}],3:[function(require,module,exports){
+exports.BlogController = function ($scope) {
+
+    $scope.word = 'Blog';
+
+
+};
+},{}],4:[function(require,module,exports){
+exports.MainController = function ($scope) {
+
+    $scope.word = 'home';
+
+
+};
+},{}],5:[function(require,module,exports){
+exports.ProjectController = function ($scope) {
+
+    $scope.word = 'Projects';
+
+
+};
+},{}],6:[function(require,module,exports){
 var app = angular.module('mainapp', ['ngRoute']);
-var controller = require('./controllers/MainCtrl.js');
+var MainCtrl = require('./controllers/MainCtrl.js');
+var AboutCtrl = require('./controllers/AboutCtrl.js');
+var BlogCtrl = require('./controllers/BlogCtrl.js');
+var ProjectCtrl = require('./controllers/ProjectCtrl.js');
 
 var appRouteConfig = require('./config.js');
 app.config(appRouteConfig.config);
 
-app.controller('MainController', ['$scope', controller.MainController]);
+app.controller('MainController', ['$scope', MainCtrl.MainController]);
+app.controller('AboutController', ['$scope', AboutCtrl.AboutController]);
+app.controller('BlogController', ['$scope', BlogCtrl.BlogController]);
+app.controller('ProjectController', ['$scope', ProjectCtrl.ProjectController]);
 
-},{"./config.js":1,"./controllers/MainCtrl.js":2}]},{},[3])
+},{"./config.js":1,"./controllers/AboutCtrl.js":2,"./controllers/BlogCtrl.js":3,"./controllers/MainCtrl.js":4,"./controllers/ProjectCtrl.js":5}]},{},[6])
