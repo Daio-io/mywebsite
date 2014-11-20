@@ -1,6 +1,6 @@
-exports.ProjectController = function ($scope) {
+exports.ProjectController = function ($scope, ProjectService) {
 
-    $scope.word = 'Projects';
+    $scope.projects = ProjectService.query();
 
 
 };

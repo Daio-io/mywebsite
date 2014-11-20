@@ -1,4 +1,6 @@
 <div class="container">
-    <div>{{word}}
+    <div ng-repeat="project in projects">
+        <div>{{project.name}}</div>
     </div>
+    {{word}}
 </div>

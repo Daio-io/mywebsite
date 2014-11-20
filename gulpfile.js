@@ -19,7 +19,7 @@ gulp.task('build', function () {
         }))
         .pipe(rename('build.js'))
         .pipe(ngAnnotate())
-        .pipe(uglify())
+   //     .pipe(uglify())
         .pipe(gulp.dest('./public/js'))
 });
 
