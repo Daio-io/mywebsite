@@ -12,11 +12,6 @@
     <!-- Loading Flat UI -->
     <link href="flat-ui/css/flat-ui.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <script src="angular/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular-route.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular-resource.js"></script>
-    <script src="js/build.js"></script>
     <header>
         <div class="container">
             <div class="jumbotron header-board">
@@ -38,7 +33,11 @@
 
 <body ng-app="mainapp" ng-strict-di>
     <div ng-view=""></div>
-
 </body>
+
+<script src="angular/angular.js"></script>
+<script src="angular-route/angular-route.js"></script>
+<script src="angular-resource/angular-resource.js"></script>
+<script src="js/build.js"></script>
 
 </html>

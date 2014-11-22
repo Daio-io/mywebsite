@@ -64,12 +64,8 @@ exports.MainController = function ($scope) {
 exports.ProjectController = function ($scope, ProjectService) {
 
     $scope.projects = ProjectService.query();
-    
-    $scope.word = ProjectService.get({id : '546d0de82838fd7ee52e1965'});
-    
-    console.log($scope.projects);
 
-
+    
 };
 },{}],6:[function(require,module,exports){
 var app = angular.module('mainapp', ['ngRoute', 'ngResource']);
