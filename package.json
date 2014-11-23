@@ -5,7 +5,7 @@
   "description": "My personal website",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -u tdd qa/tests-api.js"
+    "test": "mocha -u tdd qa/tests-blogs.js"
   },
   "author": "Daveloper87",
   "license": "ISC",
