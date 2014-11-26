@@ -5,9 +5,9 @@ module.exports = function (app, rest) {
 
     //** Project Routes **//
     rest.get('/projects', project.getAllProjects);
-    rest.get('/project/:id', project.getProject);
-    rest.post('/project', project.postProject);
-    rest.del('/project/:id', project.deleteProject);    
+    rest.get('/projects/:id', project.getProject);
+    rest.post('/projects', project.postProject);
+    rest.del('/projects/:id', project.deleteProject);    
     
     //** Blog Routes **//
     rest.get('/blogs', blog.getAllBlogPosts);

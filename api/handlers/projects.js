@@ -40,11 +40,11 @@ exports.getAllProjects = function (req, content, callback) {
 
 exports.postProject = function (req, content, callback) {
     var project = new Project({
-        name: req.params.name,
-        description: req.params.description,
-        projectURL: req.params.projectURL,
-        imageURL: req.params.imageURL,
-        date: req.params.date
+        name: req.body.name,
+        description: req.body.description,
+        projectURL: req.body.projectURL,
+        imageURL: req.body.imageURL,
+        date: req.body.date
     });
 
     project.save(function (err, saved) {
