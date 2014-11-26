@@ -71,13 +71,6 @@ suite('API tests', function () {
             });
     });
 
-    test('I should get an error if I send the wrong data', function (done) {
-        postMessage(dodgyData).on('success',
-            function (data) {
-                assert(data.statusCode.should.equal(404));
-                done();
-            });
-    });
 
     function postMessage(postData) {
         return rest.post(baseUrl + '/api/projects', {

@@ -6,7 +6,7 @@ var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 
 gulp.task('unit-tests', function () {
-    return gulp.src('qa/tests-project.js')
+    return gulp.src('qa/tests-*.js')
         .pipe(mocha({
             ui: 'tdd'
         }));

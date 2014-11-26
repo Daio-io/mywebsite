@@ -4,7 +4,7 @@ var blogPostSchema = mongoose.Schema({
     title: String, 
     content: String,  
     iconURL: String,
-    datePublished: Date
+    datePublished: String
 
 });
 

@@ -38,10 +38,10 @@ exports.getAllBlogPosts = function (req, content, callback) {
 
 exports.postBlogPost = function (req, content, callback) {
     var blogPost = new BlogPost({
-        title: req.body.title,
-        content: req.body.content,
-        iconURL: req.body.iconURL,
-        datePublished: req.body.datePublished
+        title: content.title,
+        content: content.content,
+        iconURL: content.iconURL,
+        datePublished: content.datePublished
     });
 
     blogPost.save(function (err, saved) {
