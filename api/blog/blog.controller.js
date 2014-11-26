@@ -1,7 +1,7 @@
 // Handlers files are used to group your routes logically
 // Require your handlers and add each route to the routes.js file
 
-var BlogPost = require('../../models/blogpost.js');
+var BlogPost = require('./blog.model.js');
 
 exports.getBlogPost = function (req, content, callback) {
     BlogPost.findById(req.params.id, function (err, found) {

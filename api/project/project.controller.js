@@ -1,7 +1,7 @@
 // Handlers files are used to group your routes logically
 // Require your handlers and add each route to the routes.js file
 
-var Project = require('../../models/project.js');
+var Project = require('./project.model.js');
 
 exports.getProject = function (req, content, callback) {
     Project.findById(req.params.id, function (err, found) {
@@ -39,12 +39,13 @@ exports.getAllProjects = function (req, content, callback) {
 };
 
 exports.postProject = function (req, content, callback) {
+    
     var project = new Project({
-        name: req.body.name,
-        description: req.body.description,
-        projectURL: req.body.projectURL,
-        imageURL: req.body.imageURL,
-        date: req.body.date
+        name: content.name,
+        description: content.description,
+        projectURL: content.projectURL,
+        imageURL: content.imageURL,
+        date: content.date
     });
 
     project.save(function (err, saved) {

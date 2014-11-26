@@ -1,7 +1,7 @@
 var assert = require('chai').assert;
 var rest = require('restler');
 var inserted = {}
-require('../index.js');
+// require('../index.js');
 
 suite('API tests', function () {
 
@@ -14,6 +14,12 @@ suite('API tests', function () {
         projectURL: 'url/to/project',
         imageURL: 'url/to/image',
         date: 'a date'
+    };
+
+    var dodgyData = {
+        wrong: 'This',
+        things: 'is not',
+        sent: 'right'
     };
 
     test('should be able to send and add a project to the API', function (done) {
@@ -62,6 +68,14 @@ suite('API tests', function () {
                     assert(response.deleted === 1);
                     done();
                 })
+            });
+    });
+
+    test('I should get an error if I send the wrong data', function (done) {
+        postMessage(dodgyData).on('success',
+            function (data) {
+                assert(data.statusCode.should.equal(404));
+                done();
             });
     });
 

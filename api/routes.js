@@ -1,5 +1,5 @@
-var project = require('./handlers/projects.js');
-var blog = require('./handlers/blog.js');
+var project = require('./project/project.controller.js');
+var blog = require('./blog/blog.controller.js');
 
 module.exports = function (app, rest) {
 

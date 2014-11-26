@@ -41,12 +41,13 @@ exports.config = function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 };
 },{}],2:[function(require,module,exports){
-exports.AboutController = function ($scope) {
+var AboutController = function ($scope) {
 
     $scope.word = 'About';
-
-
+    
 };
+
+exports.AboutController = AboutController;
 },{}],3:[function(require,module,exports){
 exports.BlogController = function ($scope) {
 
