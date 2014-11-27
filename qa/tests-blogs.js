@@ -2,7 +2,6 @@ var assert = require('chai').assert;
 var http = require('http');
 var rest = require('restler');
 var inserted = {}
-// require('../index.js');
 
 suite('API tests', function () {
 

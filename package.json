@@ -5,7 +5,7 @@
   "description": "My personal website",
   "main": "index.js",
   "scripts": {
-    "test": "gulp unit-tests"
+    "test": "bash qa/test-script.sh"
   },
   "author": "Daveloper87",
   "license": "ISC",
