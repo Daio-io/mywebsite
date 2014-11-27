@@ -1,4 +1,4 @@
-exports.BlogController = function ($scope) {
+exports.BlogController = function ($scope, BlogService) {
 
     $scope.word = 'Blog';
 
