@@ -49,7 +49,7 @@ var AboutController = function ($scope) {
 
 exports.AboutController = AboutController;
 },{}],3:[function(require,module,exports){
-exports.BlogController = function ($scope) {
+exports.BlogController = function ($scope, BlogService) {
 
     $scope.word = 'Blog';
 
@@ -70,12 +70,15 @@ exports.ProjectController = function ($scope, ProjectService) {
 };
 },{}],6:[function(require,module,exports){
 var app = angular.module('mainapp', ['ngRoute', 'ngResource']);
+//** CONTROLLERS
 var MainCtrl = require('./controllers/MainCtrl.js');
 var AboutCtrl = require('./controllers/AboutCtrl.js');
 var BlogCtrl = require('./controllers/BlogCtrl.js');
 var ProjectCtrl = require('./controllers/ProjectCtrl.js');
 
+//** SERVICES
 var ProjectServ =  require('./services/ProjectService.js');
+var BlogServ =  require('./services/BlogService.js');
 
 var appRouteConfig = require('./config.js');
 app.config(['$routeProvider', '$locationProvider', appRouteConfig.config]);
@@ -84,12 +87,18 @@ app.factory('ProjectService', ['$resource', ProjectServ.ProjectsService]);
 
 app.controller('MainController', ['$scope', MainCtrl.MainController]);
 app.controller('AboutController', ['$scope', AboutCtrl.AboutController]);
-app.controller('BlogController', ['$scope', BlogCtrl.BlogController]);
+app.controller('BlogController', ['$scope', 'BlogService', BlogCtrl.BlogController]);
 app.controller('ProjectController', ['$scope', 'ProjectService', ProjectCtrl.ProjectController]);
 
 
 
-},{"./config.js":1,"./controllers/AboutCtrl.js":2,"./controllers/BlogCtrl.js":3,"./controllers/MainCtrl.js":4,"./controllers/ProjectCtrl.js":5,"./services/ProjectService.js":7}],7:[function(require,module,exports){
+},{"./config.js":1,"./controllers/AboutCtrl.js":2,"./controllers/BlogCtrl.js":3,"./controllers/MainCtrl.js":4,"./controllers/ProjectCtrl.js":5,"./services/BlogService.js":7,"./services/ProjectService.js":8}],7:[function(require,module,exports){
+exports.BlogService = function($resource) {
+    
+    return $resource('/api/blogs/:id', {id : '@id'} );
+    
+};
+},{}],8:[function(require,module,exports){
 exports.ProjectsService = function($resource) {
     
     return $resource('/api/projects/:id', {id : '@id'} );

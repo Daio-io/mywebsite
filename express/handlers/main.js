@@ -11,4 +11,10 @@ exports.partial = function (req, res) {
     res.render(directory + '/' + file);
     
 };
+
+exports.admin = function (req, res) {
+  
+    res.render('admin');
+    
+};
                             
