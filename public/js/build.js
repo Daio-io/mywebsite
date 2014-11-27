@@ -12,6 +12,11 @@ exports.config = function ($routeProvider, $locationProvider) {
         controller: 'AboutController',
         templateUrl: "/views/partial/about"
 
+    }).    
+    when('/admin', {
+        controller: 'AdminController',
+        templateUrl: "/views/partial/admin"
+
     }).
     
     when('/projects', {
@@ -62,11 +67,31 @@ exports.MainController = function ($scope) {
 
 };
 },{}],5:[function(require,module,exports){
-exports.ProjectController = function ($scope, ProjectService) {
+exports.ProjectController = function ($scope, $sce, ProjectService) {
 
     $scope.projects = ProjectService.query();
 
-    
+    $scope.renderHtml = function (html_code) {
+        return $sce.trustAsHtml(html_code);
+    };
+
+
+    $scope.platformImage = function (platform) {
+
+        var pF = platform.toUpperCase();
+
+        if (pF === 'ANDROID') {
+
+            return 'android_icon.png';
+        } else if (pF === 'WEB') {
+
+            return 'web_icon.png';
+        }
+
+
+    };
+
+
 };
 },{}],6:[function(require,module,exports){
 var app = angular.module('mainapp', ['ngRoute', 'ngResource']);
@@ -75,30 +100,47 @@ var MainCtrl = require('./controllers/MainCtrl.js');
 var AboutCtrl = require('./controllers/AboutCtrl.js');
 var BlogCtrl = require('./controllers/BlogCtrl.js');
 var ProjectCtrl = require('./controllers/ProjectCtrl.js');
+var AdminCtrl = require('./modules/admin/admin.controller.js');
 
 //** SERVICES
 var ProjectServ =  require('./services/ProjectService.js');
 var BlogServ =  require('./services/BlogService.js');
+var AdminServ = require('./modules/admin/admin.service.js');
 
 var appRouteConfig = require('./config.js');
 app.config(['$routeProvider', '$locationProvider', appRouteConfig.config]);
 
 app.factory('ProjectService', ['$resource', ProjectServ.ProjectsService]);
+app.factory('BlogService', ['$resource', BlogServ.BlogService]);
+app.factory('AdminService', ['$resource', AdminServ.AdminServiceService]);
 
 app.controller('MainController', ['$scope', MainCtrl.MainController]);
 app.controller('AboutController', ['$scope', AboutCtrl.AboutController]);
 app.controller('BlogController', ['$scope', 'BlogService', BlogCtrl.BlogController]);
-app.controller('ProjectController', ['$scope', 'ProjectService', ProjectCtrl.ProjectController]);
+app.controller('ProjectController', ['$scope', '$sce', 'ProjectService', ProjectCtrl.ProjectController]);
+app.controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.ProjectController]);
 
 
 
-},{"./config.js":1,"./controllers/AboutCtrl.js":2,"./controllers/BlogCtrl.js":3,"./controllers/MainCtrl.js":4,"./controllers/ProjectCtrl.js":5,"./services/BlogService.js":7,"./services/ProjectService.js":8}],7:[function(require,module,exports){
+},{"./config.js":1,"./controllers/AboutCtrl.js":2,"./controllers/BlogCtrl.js":3,"./controllers/MainCtrl.js":4,"./controllers/ProjectCtrl.js":5,"./modules/admin/admin.controller.js":7,"./modules/admin/admin.service.js":8,"./services/BlogService.js":9,"./services/ProjectService.js":10}],7:[function(require,module,exports){
+exports.AdminController = function ($scope, AdminService) {
+
+    $scope.word = 'admin';
+
+};
+},{}],8:[function(require,module,exports){
+exports.AdminService = function($resource) {
+    
+    return $resource('/login/:id', {id : '@id'} );
+    
+};
+},{}],9:[function(require,module,exports){
 exports.BlogService = function($resource) {
     
     return $resource('/api/blogs/:id', {id : '@id'} );
     
 };
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 exports.ProjectsService = function($resource) {
     
     return $resource('/api/projects/:id', {id : '@id'} );

@@ -3750,3 +3750,8 @@ footer p {
     color: #eee;
     background-color: #3498db;
 }
+
+.login-container {
+    text-align: center;
+    color: #eee;
+}

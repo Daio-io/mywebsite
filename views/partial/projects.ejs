@@ -2,8 +2,9 @@
     <div ng-repeat="project in projects">
         <h4 class="project">
             <img src="/img{{project.imageURL}}">
-            <a ng-href="{{project.projectURL}}">{{project.name}}</a>          
+            <img src="/img/{{platformImage(project.platform)}}">
+            <a ng-href="{{project.projectURL}}">{{project.name}}</a>
         </h4>
-        <span class="project-desc">{{project.description}}</span> 
+        <p class="project-desc" ng-bind-html="renderHtml(project.description)"></p>
     </div>
 </div>

@@ -11,6 +11,11 @@ exports.config = function ($routeProvider, $locationProvider) {
         controller: 'AboutController',
         templateUrl: "/views/partial/about"
 
+    }).    
+    when('/admin', {
+        controller: 'AdminController',
+        templateUrl: "/views/partial/admin"
+
     }).
     
     when('/projects', {

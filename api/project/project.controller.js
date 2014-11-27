@@ -11,6 +11,7 @@ exports.getProject = function (req, content, callback) {
         callback(null, {
             name: found.name,
             description: found.description,
+            platform: found.platform,
             projectURL: found.projectURL,
             imageURL: found.imageURL,
             date: found.date
@@ -27,6 +28,7 @@ exports.getAllProjects = function (req, content, callback) {
             return {
                 name: found.name,
                 description: found.description,
+                platform: found.platform,
                 projectURL: found.projectURL,
                 imageURL: found.imageURL,
                 date: found.date
@@ -43,6 +45,7 @@ exports.postProject = function (req, content, callback) {
     var project = new Project({
         name: content.name,
         description: content.description,
+        platform: content.platform,
         projectURL: content.projectURL,
         imageURL: content.imageURL,
         date: content.date

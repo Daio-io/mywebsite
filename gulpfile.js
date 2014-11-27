@@ -5,6 +5,8 @@ var rename = require('gulp-rename');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 
+
+// This task should only be used with npm test command
 gulp.task('unit-tests', function () {
     return gulp.src('qa/tests-*.js')
         .pipe(mocha({
@@ -23,4 +25,4 @@ gulp.task('build', function () {
         .pipe(gulp.dest('./public/js'))
 });
 
-gulp.task('default', ['unit-tests'], function () {});
+gulp.task('default', [], function () {});
