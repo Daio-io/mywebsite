@@ -2,7 +2,7 @@
     <div class="row">
         <div class="center-all" ng-repeat="project in projects">
             <div class="project-tile col-xs-6 col-sm-3">
-                <div class="tile tile-android">
+                <div class="tile" ng-class="platformType(project.platform)">
                     <h6>
                         <img src="/img{{project.imageURL}}">
                         <img src="/img/{{platformImage(project.platform)}}">
@@ -17,9 +17,9 @@
         <div class="center-all">
             <div class="project-tile col-xs-6 col-sm-3">
                 <div class="tile">
-                    <h4 class="project">
-                    <a>More in the oven..</a>
-                </h4>
+                    <h6 class="project">
+                    <div>More in the oven..</div>
+                </h6>
                 </div>
             </div>
         </div>

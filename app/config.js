@@ -39,7 +39,7 @@ exports.config = function ($routeProvider, $locationProvider) {
     }).
     
     otherwise({
-        redirectTo: '/'
+        templateUrl: 'views/partial/404'
     });
 
     $locationProvider.html5Mode(true);
