@@ -23,11 +23,6 @@ exports.config = function ($routeProvider, $locationProvider) {
         templateUrl: 'views/partial/projects'
     }).
     
-    when('/projects/:id', {
-        controller: 'ProjectController',
-        templateUrl: 'views/partial/projects'
-    }).
-
     when('/blog', {
         controller: 'BlogController',
         templateUrl: 'views/partial/blog'
