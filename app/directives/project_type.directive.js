@@ -2,7 +2,7 @@ var ProjectType = function () {
 
     return {
         restrict: 'E',
-        template: '<div class="project-tile col-xs-6 col-sm-3"><div class="tile" ng-class="css"><h6><img src="/img{{proj.imageURL}}"><img src="/img/{{icon}}">{{proj.name}}</h6><div class="project-desc">{{proj.description}}</div><p></p><a class="btn btn-success" ng-href="{{proj.projectURL}}">Here it is</a></div></div>',
+        templateUrl: 'views/partial/project_tile',
         replace: false,
         scope: {
             project: '=projectObject',
