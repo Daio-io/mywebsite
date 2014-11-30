@@ -1,10 +1,27 @@
 <div class="container">
-    <div ng-repeat="project in projects">
-        <h4 class="project">
-            <img src="/img{{project.imageURL}}">
-            <img src="/img/{{platformImage(project.platform)}}">
-            <a ng-href="{{project.projectURL}}">{{project.name}}</a>
-        </h4>
-        <p class="project-desc" ng-bind-html="renderHtml(project.description)"></p>
+    <div class="row">
+        <div class="center-all" ng-repeat="project in projects">
+            <div class="project-tile col-xs-6 col-sm-3">
+                <div class="tile" ng-class="platformType(project.platform)">
+                    <h6>
+                        <img src="/img{{project.imageURL}}">
+                        <img src="/img/{{platformImage(project.platform)}}">
+                        {{project.name}}
+                    </h6>
+                    <div class="project-desc">{{project.description}}</div>
+                    <p></p>
+                    <a class="btn btn-success" ng-href="{{project.projectURL}}">Here it is</a>
+                </div>
+            </div>
+        </div>
+        <div class="center-all">
+            <div class="project-tile col-xs-6 col-sm-3">
+                <div class="tile">
+                    <h6 class="project">
+                    <div>More in the oven..</div>
+                </h6>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

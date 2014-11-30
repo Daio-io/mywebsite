@@ -25,4 +25,10 @@ gulp.task('build', function () {
         .pipe(gulp.dest('./public/js'))
 });
 
-gulp.task('default', [], function () {});
+gulp.task('default', ['build'], function () {});
+
+var watcher = gulp.watch('./app/**/*.js', ['build']);
+
+watcher.on('change', function(event) {
+  console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+});

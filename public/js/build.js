@@ -40,7 +40,7 @@ exports.config = function ($routeProvider, $locationProvider) {
     }).
     
     otherwise({
-        redirectTo: '/'
+        templateUrl: 'views/partial/404'
     });
 
     $locationProvider.html5Mode(true);
@@ -54,28 +54,31 @@ var AboutController = function ($scope) {
 
 exports.AboutController = AboutController;
 },{}],3:[function(require,module,exports){
-exports.BlogController = function ($scope, BlogService) {
+var BlogController = function ($scope, BlogService) {
 
     $scope.word = 'Blog';
 
     $scope.renderHtml = function (html_code) {
         return $sce.trustAsHtml(html_code);
     };
-
-
-
 };
+
+exports.BlogController = BlogController;
 },{}],4:[function(require,module,exports){
-exports.MainController = function ($scope) {
+var MainController = function ($scope) {
 
     $scope.word = 'home';
 
 };
+
+exports.MainController = MainController;
 },{}],5:[function(require,module,exports){
-exports.ProjectController = function ($scope, $sce, ProjectService) {
+var ProjectController = function ($scope, $sce, ProjectService) {
 
     $scope.projects = ProjectService.query();
 
+    
+    //Todo, move these into directives ** Needs refactor 
     $scope.platformImage = function (platform) {
 
         var pF = platform.toUpperCase();
@@ -88,11 +91,27 @@ exports.ProjectController = function ($scope, $sce, ProjectService) {
             return 'web_icon.png';
         }
 
+    };
+    
+    $scope.platformType = function (platform) {
+
+        var pF = platform.toUpperCase();
+
+        if (pF === 'ANDROID') {
+
+            return 'tile-android';
+            
+        } else if (pF === 'WEB') {
+
+            return 'tile-web';
+        }
 
     };
-
+    
 
 };
+
+exports.ProjectController = ProjectController;
 },{}],6:[function(require,module,exports){
 var app = angular.module('mainapp', ['ngRoute', 'ngResource']);
 //** CONTROLLERS

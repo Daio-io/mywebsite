@@ -1,7 +1,9 @@
-exports.ProjectController = function ($scope, $sce, ProjectService) {
+var ProjectController = function ($scope, $sce, ProjectService) {
 
     $scope.projects = ProjectService.query();
 
+    
+    //Todo, move these into directives ** Needs refactor 
     $scope.platformImage = function (platform) {
 
         var pF = platform.toUpperCase();
@@ -14,8 +16,24 @@ exports.ProjectController = function ($scope, $sce, ProjectService) {
             return 'web_icon.png';
         }
 
+    };
+    
+    $scope.platformType = function (platform) {
+
+        var pF = platform.toUpperCase();
+
+        if (pF === 'ANDROID') {
+
+            return 'tile-android';
+            
+        } else if (pF === 'WEB') {
+
+            return 'tile-web';
+        }
 
     };
-
+    
 
 };
+
+exports.ProjectController = ProjectController;

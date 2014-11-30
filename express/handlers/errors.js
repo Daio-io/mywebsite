@@ -6,7 +6,7 @@ exports.error500 = function (err, req, res, next) {
 };
 
 exports.error404 = function (req, res) {
-    // you have to explicitly set status to 404 otherwise express defaults to 200
+    res.render('404');
     res.status(404);
 
 };
