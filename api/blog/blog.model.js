@@ -2,10 +2,8 @@
 var mongoose = require('mongoose');
 var blogPostSchema = mongoose.Schema({
     title: String, 
-    content: String,  
-    iconURL: String,
-    datePublished: String
-
+    short: String,
+    full: String
 });
 
 var BlogPost = mongoose.model('BlogPost', blogPostSchema); // create a model using Mongoose - at this point Sample becomes like a class

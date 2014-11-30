@@ -10,9 +10,9 @@ exports.getBlogPost = function (req, content, callback) {
         });
         callback(null, {
             title: found.title,
-            content: found.content,
-            iconURL: found.iconURL,
-            datePublished: found.datePublished
+            short: found.short,
+            full: found.full,
+            dateCreated: found._id.getTimestamp()
         });
     });
 };
@@ -25,10 +25,9 @@ exports.getAllBlogPosts = function (req, content, callback) {
         callback(null, found.map(function (found) {
             return {
                 title: found.title,
-                content: found.content,
-                iconURL: found.iconURL,
-                datePublished: found.datePublished
-
+                short: found.short,
+                full: found.full,
+                dateCreated: found._id.getTimestamp()
             };
         }));
 
@@ -39,9 +38,8 @@ exports.getAllBlogPosts = function (req, content, callback) {
 exports.postBlogPost = function (req, content, callback) {
     var blogPost = new BlogPost({
         title: content.title,
-        content: content.content,
-        iconURL: content.iconURL,
-        datePublished: content.datePublished
+        short: content.short,
+        full: content.full
     });
 
     blogPost.save(function (err, saved) {
