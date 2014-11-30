@@ -7,6 +7,9 @@ var ProjectCtrl = require('./controllers/ProjectCtrl.js');
 var AdminCtrl = require('./modules/admin/admin.controller.js');
 var BlogDetailCtrl = require('./controllers/BlogDetailCtrl.js');
 
+//** DIRECTIVES
+var ProjectDir = require('./directives/project_type.directive.js');
+
 //** SERVICES
 var ProjectServ =  require('./services/ProjectService.js');
 var BlogServ =  require('./services/BlogService.js');
@@ -18,6 +21,8 @@ app.config(['$routeProvider', '$locationProvider', appRouteConfig.config]);
 app.factory('ProjectService', ['$resource', ProjectServ.ProjectsService]);
 app.factory('BlogService', ['$resource', BlogServ.BlogService]);
 app.factory('AdminService', ['$resource', AdminServ.AdminServiceService]);
+
+app.directive('projectType', ProjectDir.ProjectType);
 
 app.controller('MainController', ['$scope', MainCtrl.MainController]);
 app.controller('AboutController', ['$scope', AboutCtrl.AboutController]);

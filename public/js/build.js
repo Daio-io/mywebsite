@@ -85,42 +85,43 @@ var ProjectController = function ($scope, $sce, ProjectService) {
 
     $scope.projects = ProjectService.query();
 
-    
-    //Todo, move these into directives ** Needs refactor 
-    $scope.platformImage = function (platform) {
-
-        var pF = platform.toUpperCase();
-
-        if (pF === 'ANDROID') {
-
-            return 'android_icon.png';
-        } else if (pF === 'WEB') {
-
-            return 'web_icon.png';
-        }
-
-    };
-    
-    $scope.platformType = function (platform) {
-
-        var pF = platform.toUpperCase();
-
-        if (pF === 'ANDROID') {
-
-            return 'tile-android';
-            
-        } else if (pF === 'WEB') {
-
-            return 'tile-web';
-        }
-
-    };
-    
-
 };
 
 exports.ProjectController = ProjectController;
 },{}],7:[function(require,module,exports){
+var ProjectType = function () {
+
+    return {
+        restrict: 'E',
+        template: '<div class="project-tile col-xs-6 col-sm-3"><div class="tile" ng-class="css"><h6><img src="/img{{proj.imageURL}}"><img src="/img/{{icon}}">{{proj.name}}</h6><div class="project-desc">{{proj.description}}</div><p></p><a class="btn btn-success" ng-href="{{proj.projectURL}}">Here it is</a></div></div>',
+        replace: false,
+        scope: {
+            project: '=projectObject',
+        },
+        link: function (scope, elems, attrs) {
+
+            scope.proj = scope.$eval(attrs.projectObject);
+
+            var pF = scope.proj.platform.toUpperCase();
+
+            if (pF === 'ANDROID') {
+
+                scope.icon = 'android_icon.png';
+                scope.css = 'tile-android';
+
+            } else if (pF === 'WEB') {
+
+                scope.icon = 'web_icon.png';
+                scope.css = 'tile-web';
+            }
+
+        }
+
+    };
+};
+
+exports.ProjectType = ProjectType;
+},{}],8:[function(require,module,exports){
 var app = angular.module('mainapp', ['ngRoute', 'ngResource']);
 //** CONTROLLERS
 var MainCtrl = require('./controllers/MainCtrl.js');
@@ -129,6 +130,9 @@ var BlogCtrl = require('./controllers/BlogCtrl.js');
 var ProjectCtrl = require('./controllers/ProjectCtrl.js');
 var AdminCtrl = require('./modules/admin/admin.controller.js');
 var BlogDetailCtrl = require('./controllers/BlogDetailCtrl.js');
+
+//** DIRECTIVES
+var ProjectDir = require('./directives/project_type.directive.js');
 
 //** SERVICES
 var ProjectServ =  require('./services/ProjectService.js');
@@ -142,6 +146,8 @@ app.factory('ProjectService', ['$resource', ProjectServ.ProjectsService]);
 app.factory('BlogService', ['$resource', BlogServ.BlogService]);
 app.factory('AdminService', ['$resource', AdminServ.AdminServiceService]);
 
+app.directive('projectType', ProjectDir.ProjectType);
+
 app.controller('MainController', ['$scope', MainCtrl.MainController]);
 app.controller('AboutController', ['$scope', AboutCtrl.AboutController]);
 app.controller('BlogController', ['$scope', 'BlogService', BlogCtrl.BlogController]);
@@ -151,28 +157,28 @@ app.controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.Project
 
 
 
-},{"./config.js":1,"./controllers/AboutCtrl.js":2,"./controllers/BlogCtrl.js":3,"./controllers/BlogDetailCtrl.js":4,"./controllers/MainCtrl.js":5,"./controllers/ProjectCtrl.js":6,"./modules/admin/admin.controller.js":8,"./modules/admin/admin.service.js":9,"./services/BlogService.js":10,"./services/ProjectService.js":11}],8:[function(require,module,exports){
+},{"./config.js":1,"./controllers/AboutCtrl.js":2,"./controllers/BlogCtrl.js":3,"./controllers/BlogDetailCtrl.js":4,"./controllers/MainCtrl.js":5,"./controllers/ProjectCtrl.js":6,"./directives/project_type.directive.js":7,"./modules/admin/admin.controller.js":9,"./modules/admin/admin.service.js":10,"./services/BlogService.js":11,"./services/ProjectService.js":12}],9:[function(require,module,exports){
 exports.AdminController = function ($scope, AdminService) {
 
     $scope.word = 'admin';
 
 };
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 exports.AdminService = function($resource) {
     
     return $resource('/login/:id', {id : '@id'} );
     
 };
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 exports.BlogService = function($resource) {
     
     return $resource('/api/blogs/:id', {id : '@id'} );
     
 };
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 exports.ProjectsService = function($resource) {
     
     return $resource('/api/projects/:id', {id : '@id'} );
     
 };
-},{}]},{},[7])
+},{}]},{},[8])
