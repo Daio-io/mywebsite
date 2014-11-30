@@ -5,3 +5,4 @@ server.log
 public/angular-resource/
 public/angular-route/
 public/phaser/
+public/js/build.js
