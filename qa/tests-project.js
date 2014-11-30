@@ -10,6 +10,7 @@ suite('API tests', function () {
     var project = {
         name: 'a project',
         description: 'project x',
+        platform: 'Platform',
         projectURL: 'url/to/project',
         imageURL: 'url/to/image',
         date: 'a date'
