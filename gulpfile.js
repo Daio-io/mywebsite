@@ -17,18 +17,26 @@ gulp.task('unit-tests', function () {
 gulp.task('build', function () {
     // Single entry point to browserify
     gulp.src('./app/app.js')
-        .pipe(browserify({
-        }))
+        .pipe(browserify({}))
         .pipe(rename('build.js'))
         .pipe(ngAnnotate())
-   //     .pipe(uglify())
+    //     .pipe(uglify())
+    .pipe(gulp.dest('./public/js'))
+});
+
+gulp.task('deploy', function () {
+    gulp.src('./app/app.js')
+        .pipe(browserify({}))
+        .pipe(rename('build.js'))
+        .pipe(ngAnnotate())
+        .pipe(uglify())
         .pipe(gulp.dest('./public/js'))
 });
 
-gulp.task('default', ['build'], function () {});
-
-var watcher = gulp.watch('./app/**/*.js', ['build']);
-
-watcher.on('change', function(event) {
-  console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+gulp.task('watch', function () {
+    gulp.watch('./app/**/*.js', ['build']).on('change', function (event) {
+        console.log('File ' + event.path + ' was ' + event.type + ', Building...');
+    });
 });
+
+gulp.task('default', ['build', 'unit-tests'], function () {});
