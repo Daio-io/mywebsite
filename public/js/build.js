@@ -58,6 +58,11 @@ exports.BlogController = function ($scope, BlogService) {
 
     $scope.word = 'Blog';
 
+    $scope.renderHtml = function (html_code) {
+        return $sce.trustAsHtml(html_code);
+    };
+
+
 
 };
 },{}],4:[function(require,module,exports){
@@ -70,11 +75,6 @@ exports.MainController = function ($scope) {
 exports.ProjectController = function ($scope, $sce, ProjectService) {
 
     $scope.projects = ProjectService.query();
-
-    $scope.renderHtml = function (html_code) {
-        return $sce.trustAsHtml(html_code);
-    };
-
 
     $scope.platformImage = function (platform) {
 
