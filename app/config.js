@@ -34,7 +34,7 @@ exports.config = function ($routeProvider, $locationProvider) {
     }).
 
     when('/blog/:id', {
-        controller: 'BlogController',
+        controller: 'BlogDetailController',
         templateUrl: 'views/partial/blogdetail'
     }).
     

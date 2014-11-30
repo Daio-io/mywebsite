@@ -9,6 +9,7 @@ exports.getBlogPost = function (req, content, callback) {
             error: 'Could not find BlogPost'
         });
         callback(null, {
+            id: found._id,
             title: found.title,
             short: found.short,
             full: found.full,
@@ -24,6 +25,7 @@ exports.getAllBlogPosts = function (req, content, callback) {
         });
         callback(null, found.map(function (found) {
             return {
+                id: found._id,
                 title: found.title,
                 short: found.short,
                 full: found.full,

@@ -5,6 +5,7 @@ var AboutCtrl = require('./controllers/AboutCtrl.js');
 var BlogCtrl = require('./controllers/BlogCtrl.js');
 var ProjectCtrl = require('./controllers/ProjectCtrl.js');
 var AdminCtrl = require('./modules/admin/admin.controller.js');
+var BlogDetailCtrl = require('./controllers/BlogDetailCtrl.js');
 
 //** SERVICES
 var ProjectServ =  require('./services/ProjectService.js');
@@ -21,6 +22,7 @@ app.factory('AdminService', ['$resource', AdminServ.AdminServiceService]);
 app.controller('MainController', ['$scope', MainCtrl.MainController]);
 app.controller('AboutController', ['$scope', AboutCtrl.AboutController]);
 app.controller('BlogController', ['$scope', 'BlogService', BlogCtrl.BlogController]);
+app.controller('BlogDetailController', ['$scope', '$routeParams', '$sce', 'BlogService', BlogDetailCtrl.BlogDetailController]);
 app.controller('ProjectController', ['$scope', '$sce', 'ProjectService', ProjectCtrl.ProjectController]);
 app.controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.ProjectController]);
 

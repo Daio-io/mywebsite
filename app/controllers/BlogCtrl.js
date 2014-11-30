@@ -1,10 +1,7 @@
 var BlogController = function ($scope, BlogService) {
+    
+    $scope.blogPosts = BlogService.query();
 
-    $scope.word = 'Blog';
-
-    $scope.renderHtml = function (html_code) {
-        return $sce.trustAsHtml(html_code);
-    };
 };
 
 exports.BlogController = BlogController;

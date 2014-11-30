@@ -1,13 +1,17 @@
 // Require mongoose
 var mongoose = require('mongoose');
 var blogPostSchema = mongoose.Schema({
-    title: String, 
+    title: String,
     short: String,
     full: String
 });
 
-blogPostSchema.methods.getDateCreated = function (cb) {
-  return this._id.getTimestamp(); 
+blogPostSchema.methods.getDateCreated = function () {
+    var date = this._id.getTimestamp().getUTCDate();
+    var month = this._id.getTimestamp().getUTCMonth();
+    var year = this._id.getTimestamp().getUTCFullYear();
+
+    return date + '-' + month + '-' + year;
 };
 
 var BlogPost = mongoose.model('BlogPost', blogPostSchema); // create a model using Mongoose - at this point Sample becomes like a class

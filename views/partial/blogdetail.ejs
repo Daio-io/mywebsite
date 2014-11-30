@@ -1,5 +1,4 @@
 <div class="container">
-    <div>{{word}}
-    </div>
-    <p class="project-desc" ng-bind-html="renderHtml('<div>hello</div>')"></p>
+    <h4>{{blogPost.title}} <small>{{blogPost.dateCreated}}</small></h4>
+    <p class="project-desc" ng-bind-html="renderHtml(blogPost.full)"></p>
 </div>
