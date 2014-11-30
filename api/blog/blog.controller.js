@@ -12,7 +12,7 @@ exports.getBlogPost = function (req, content, callback) {
             title: found.title,
             short: found.short,
             full: found.full,
-            dateCreated: found._id.getTimestamp()
+            dateCreated: found.getDateCreated()
         });
     });
 };
@@ -27,7 +27,7 @@ exports.getAllBlogPosts = function (req, content, callback) {
                 title: found.title,
                 short: found.short,
                 full: found.full,
-                dateCreated: found._id.getTimestamp()
+                dateCreated: found.getDateCreated()
             };
         }));
 

@@ -6,5 +6,9 @@ var blogPostSchema = mongoose.Schema({
     full: String
 });
 
+blogPostSchema.methods.getDateCreated = function (cb) {
+  return this._id.getTimestamp(); 
+};
+
 var BlogPost = mongoose.model('BlogPost', blogPostSchema); // create a model using Mongoose - at this point Sample becomes like a class
 module.exports = BlogPost; // add the Blog object to exports this can then be imported like this
