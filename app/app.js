@@ -24,7 +24,7 @@ app.factory('AdminService', ['$resource', AdminServ.AdminServiceService]);
 
 app.directive('projectType', ProjectDir.ProjectType);
 
-app.controller('GaneController', ['$scope', GameCtrl.GameController]);
+app.controller('GameController', ['$scope', GameCtrl.GameController]);
 app.controller('HomeController', ['$scope', HomeCtrl.HomeController]);
 app.controller('BlogController', ['$scope', 'BlogService', BlogCtrl.BlogController]);
 app.controller('BlogDetailController', ['$scope', '$routeParams', '$sce', 'BlogService', BlogDetailCtrl.BlogDetailController]);
