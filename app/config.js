@@ -2,20 +2,18 @@ exports.config = function ($routeProvider, $locationProvider) {
     $routeProvider.
 
     when('/', {
-        controller: 'MainController',
-        templateUrl: "/views/partial/main"
-
+        controller: 'HomeController',
+        templateUrl: "/views/partial/home"
     }).
     
-    when('/about', {
-        controller: 'AboutController',
-        templateUrl: "/views/partial/about"
-
-    }).    
     when('/admin', {
         controller: 'AdminController',
         templateUrl: "/views/partial/admin"
-
+    }).
+        
+    when('/bored', {
+        controller: 'GameController',
+        templateUrl: "/views/partial/404"
     }).
     
     when('/projects', {

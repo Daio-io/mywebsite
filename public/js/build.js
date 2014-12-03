@@ -3,20 +3,18 @@ exports.config = function ($routeProvider, $locationProvider) {
     $routeProvider.
 
     when('/', {
-        controller: 'MainController',
-        templateUrl: "/views/partial/main"
-
+        controller: 'HomeController',
+        templateUrl: "/views/partial/home"
     }).
     
-    when('/about', {
-        controller: 'AboutController',
-        templateUrl: "/views/partial/about"
-
-    }).    
     when('/admin', {
         controller: 'AdminController',
         templateUrl: "/views/partial/admin"
-
+    }).
+        
+    when('/bored', {
+        controller: 'GameController',
+        templateUrl: "/views/partial/404"
     }).
     
     when('/projects', {
@@ -24,11 +22,6 @@ exports.config = function ($routeProvider, $locationProvider) {
         templateUrl: 'views/partial/projects'
     }).
     
-    when('/projects/:id', {
-        controller: 'ProjectController',
-        templateUrl: 'views/partial/projects'
-    }).
-
     when('/blog', {
         controller: 'BlogController',
         templateUrl: 'views/partial/blog'
@@ -46,14 +39,6 @@ exports.config = function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 };
 },{}],2:[function(require,module,exports){
-var AboutController = function ($scope) {
-
-    $scope.word = 'About';
-    
-};
-
-exports.AboutController = AboutController;
-},{}],3:[function(require,module,exports){
 var BlogController = function ($scope, BlogService) {
     
     $scope.blogPosts = BlogService.query();
@@ -61,7 +46,7 @@ var BlogController = function ($scope, BlogService) {
 };
 
 exports.BlogController = BlogController;
-},{}],4:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 var BlogDetailController = function ($scope, $routeParams, $sce, BlogService) {
     
     $scope.blogPost = BlogService.get({id: $routeParams.id});
@@ -72,14 +57,27 @@ var BlogDetailController = function ($scope, $routeParams, $sce, BlogService) {
 };
 
 exports.BlogDetailController = BlogDetailController;
-},{}],5:[function(require,module,exports){
-var MainController = function ($scope) {
+},{}],4:[function(require,module,exports){
+var GameController = function ($scope) {
 
-    $scope.word = 'home';
+    $scope.word = 'Looks like you will have to be bored for a bit longer. This feature is not ready yet..';
 
 };
 
-exports.MainController = MainController;
+exports.GameController = GameController;
+},{}],5:[function(require,module,exports){
+var HomeController = function ($scope) {
+
+    $scope.aboutMe = {
+        name: 'Dai',
+        description: 'Junior software engineer working for the BBC with a passion for MEAN stack and Android development',
+        contact: 'dle.williams1@gmail.com',
+        github: 'https://github.com/daveloper87'
+    };
+
+};
+
+exports.HomeController = HomeController; 
 },{}],6:[function(require,module,exports){
 var ProjectController = function ($scope, $sce, ProjectService) {
 
@@ -124,8 +122,8 @@ exports.ProjectType = ProjectType;
 },{}],8:[function(require,module,exports){
 var app = angular.module('mainapp', ['ngRoute', 'ngResource']);
 //** CONTROLLERS
-var MainCtrl = require('./controllers/MainCtrl.js');
-var AboutCtrl = require('./controllers/AboutCtrl.js');
+var GameCtrl = require('./controllers/GameCtrl.js');
+var HomeCtrl = require('./controllers/HomeCtrl.js');
 var BlogCtrl = require('./controllers/BlogCtrl.js');
 var ProjectCtrl = require('./controllers/ProjectCtrl.js');
 var AdminCtrl = require('./modules/admin/admin.controller.js');
@@ -148,8 +146,8 @@ app.factory('AdminService', ['$resource', AdminServ.AdminServiceService]);
 
 app.directive('projectType', ProjectDir.ProjectType);
 
-app.controller('MainController', ['$scope', MainCtrl.MainController]);
-app.controller('AboutController', ['$scope', AboutCtrl.AboutController]);
+app.controller('GaneController', ['$scope', GameCtrl.GameController]);
+app.controller('HomeController', ['$scope', HomeCtrl.HomeController]);
 app.controller('BlogController', ['$scope', 'BlogService', BlogCtrl.BlogController]);
 app.controller('BlogDetailController', ['$scope', '$routeParams', '$sce', 'BlogService', BlogDetailCtrl.BlogDetailController]);
 app.controller('ProjectController', ['$scope', '$sce', 'ProjectService', ProjectCtrl.ProjectController]);
@@ -157,7 +155,7 @@ app.controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.Project
 
 
 
-},{"./config.js":1,"./controllers/AboutCtrl.js":2,"./controllers/BlogCtrl.js":3,"./controllers/BlogDetailCtrl.js":4,"./controllers/MainCtrl.js":5,"./controllers/ProjectCtrl.js":6,"./directives/project_type.directive.js":7,"./modules/admin/admin.controller.js":9,"./modules/admin/admin.service.js":10,"./services/BlogService.js":11,"./services/ProjectService.js":12}],9:[function(require,module,exports){
+},{"./config.js":1,"./controllers/BlogCtrl.js":2,"./controllers/BlogDetailCtrl.js":3,"./controllers/GameCtrl.js":4,"./controllers/HomeCtrl.js":5,"./controllers/ProjectCtrl.js":6,"./directives/project_type.directive.js":7,"./modules/admin/admin.controller.js":9,"./modules/admin/admin.service.js":10,"./services/BlogService.js":11,"./services/ProjectService.js":12}],9:[function(require,module,exports){
 exports.AdminController = function ($scope, AdminService) {
 
     $scope.word = 'admin';

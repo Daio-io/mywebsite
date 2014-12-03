@@ -1,7 +1,7 @@
 var app = angular.module('mainapp', ['ngRoute', 'ngResource']);
 //** CONTROLLERS
-var MainCtrl = require('./controllers/MainCtrl.js');
-var AboutCtrl = require('./controllers/AboutCtrl.js');
+var GameCtrl = require('./controllers/GameCtrl.js');
+var HomeCtrl = require('./controllers/HomeCtrl.js');
 var BlogCtrl = require('./controllers/BlogCtrl.js');
 var ProjectCtrl = require('./controllers/ProjectCtrl.js');
 var AdminCtrl = require('./modules/admin/admin.controller.js');
@@ -24,8 +24,8 @@ app.factory('AdminService', ['$resource', AdminServ.AdminServiceService]);
 
 app.directive('projectType', ProjectDir.ProjectType);
 
-app.controller('MainController', ['$scope', MainCtrl.MainController]);
-app.controller('AboutController', ['$scope', AboutCtrl.AboutController]);
+app.controller('GaneController', ['$scope', GameCtrl.GameController]);
+app.controller('HomeController', ['$scope', HomeCtrl.HomeController]);
 app.controller('BlogController', ['$scope', 'BlogService', BlogCtrl.BlogController]);
 app.controller('BlogDetailController', ['$scope', '$routeParams', '$sce', 'BlogService', BlogDetailCtrl.BlogDetailController]);
 app.controller('ProjectController', ['$scope', '$sce', 'ProjectService', ProjectCtrl.ProjectController]);
