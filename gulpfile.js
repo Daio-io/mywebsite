@@ -7,6 +7,14 @@ var uglify = require('gulp-uglify');
 
 
 // This task should only be used with npm test command
+gulp.task('app-tests', function () {
+    return gulp.src('./app/test/**/*.js')
+        .pipe(mocha({
+            ui: 'tdd'
+        }));
+});
+
+// This task should only be used with npm test command
 gulp.task('unit-tests', function () {
     return gulp.src('qa/app/*.js')
         .pipe(mocha({
