@@ -1,4 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+
 exports.config = function ($routeProvider, $locationProvider) {
     $routeProvider.
 
@@ -18,7 +20,7 @@ exports.config = function ($routeProvider, $locationProvider) {
     }).
     
     when('/projects', {
-        controller: 'ProjectController',
+        controller: 'ProjectController as projectCtrl',
         templateUrl: 'views/partial/projects'
     }).
     
@@ -56,6 +58,8 @@ BlogController.prototype = {
 
 exports.BlogController = BlogController;
 },{}],3:[function(require,module,exports){
+'use strict';
+
 var BlogDetailController = function ($routeParams, $sce, BlogService) {
 
     var blogDetCtrl = this;
@@ -115,10 +119,22 @@ HomeController.prototype = {
 
 exports.HomeController = HomeController;
 },{}],6:[function(require,module,exports){
-var ProjectController = function ($scope, $sce, ProjectService) {
+'use strict';
 
-    $scope.projects = ProjectService.query();
+var ProjectController = function ($sce, ProjectService) {
 
+    var projectCtrl = this;
+    projectCtrl.sce_ = $sce;
+    projectCtrl.projectService_ = ProjectService;
+    
+    projectCtrl.projects = projectCtrl.projectService_.query();
+
+};
+
+// 
+ProjectController.prototype = {
+    
+    
 };
 
 exports.ProjectController = ProjectController;
@@ -156,6 +172,8 @@ var ProjectType = function () {
 
 exports.ProjectType = ProjectType;
 },{}],8:[function(require,module,exports){
+'use strict';
+
 //** CONTROLLERS
 var GameCtrl = require('./controllers/GameCtrl.js');
 var HomeCtrl = require('./controllers/HomeCtrl.js');
@@ -186,13 +204,14 @@ angular.module('mainapp', ['ngRoute', 'ngResource'])
 .controller('HomeController', HomeCtrl.HomeController)
 .controller('BlogController', BlogCtrl.BlogController)
 .controller('BlogDetailController', BlogDetailCtrl.BlogDetailController)
-.controller('ProjectController', ['$scope', '$sce', 'ProjectService', ProjectCtrl.ProjectController])
+.controller('ProjectController', ProjectCtrl.ProjectController)
 .controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.ProjectController]);
 
 
 // Inject dependancies after
 BlogCtrl.BlogController.$inject = ['BlogService'];
 BlogDetailCtrl.BlogDetailController.$inject = ['$routeParams', '$sce', 'BlogService'];
+ProjectCtrl.ProjectController.$inject = ['$sce', 'ProjectService'];
 
 },{"./config.js":1,"./controllers/BlogCtrl.js":2,"./controllers/BlogDetailCtrl.js":3,"./controllers/GameCtrl.js":4,"./controllers/HomeCtrl.js":5,"./controllers/ProjectCtrl.js":6,"./directives/project_type.directive.js":7,"./modules/admin/admin.controller.js":9,"./modules/admin/admin.service.js":10,"./services/BlogService.js":11,"./services/ProjectService.js":12}],9:[function(require,module,exports){
 exports.AdminController = function ($scope, AdminService) {

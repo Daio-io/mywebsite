@@ -1,3 +1,5 @@
+'use strict';
+
 //** CONTROLLERS
 var GameCtrl = require('./controllers/GameCtrl.js');
 var HomeCtrl = require('./controllers/HomeCtrl.js');
@@ -28,10 +30,11 @@ angular.module('mainapp', ['ngRoute', 'ngResource'])
 .controller('HomeController', HomeCtrl.HomeController)
 .controller('BlogController', BlogCtrl.BlogController)
 .controller('BlogDetailController', BlogDetailCtrl.BlogDetailController)
-.controller('ProjectController', ['$scope', '$sce', 'ProjectService', ProjectCtrl.ProjectController])
+.controller('ProjectController', ProjectCtrl.ProjectController)
 .controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.ProjectController]);
 
 
 // Inject dependancies after
 BlogCtrl.BlogController.$inject = ['BlogService'];
 BlogDetailCtrl.BlogDetailController.$inject = ['$routeParams', '$sce', 'BlogService'];
+ProjectCtrl.ProjectController.$inject = ['$sce', 'ProjectService'];

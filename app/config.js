@@ -1,3 +1,5 @@
+'use strict';
+
 exports.config = function ($routeProvider, $locationProvider) {
     $routeProvider.
 
@@ -17,7 +19,7 @@ exports.config = function ($routeProvider, $locationProvider) {
     }).
     
     when('/projects', {
-        controller: 'ProjectController',
+        controller: 'ProjectController as projectCtrl',
         templateUrl: 'views/partial/projects'
     }).
     

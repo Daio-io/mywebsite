@@ -1,3 +1,5 @@
+'use strict';
+
 var BlogDetailController = function ($routeParams, $sce, BlogService) {
 
     var blogDetCtrl = this;
