@@ -12,7 +12,7 @@ exports.config = function ($routeProvider, $locationProvider) {
     }).
         
     when('/bored', {
-        controller: 'GameController',
+        controller: 'GameController as gameCtrl',
         templateUrl: "/views/partial/404"
     }).
     
@@ -22,7 +22,7 @@ exports.config = function ($routeProvider, $locationProvider) {
     }).
     
     when('/blog', {
-        controller: 'BlogController',
+        controller: 'BlogController as blogCtrl',
         templateUrl: 'views/partial/blog'
     }).
 

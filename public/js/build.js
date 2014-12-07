@@ -13,7 +13,7 @@ exports.config = function ($routeProvider, $locationProvider) {
     }).
         
     when('/bored', {
-        controller: 'GameController',
+        controller: 'GameController as gameCtrl',
         templateUrl: "/views/partial/404"
     }).
     
@@ -23,7 +23,7 @@ exports.config = function ($routeProvider, $locationProvider) {
     }).
     
     when('/blog', {
-        controller: 'BlogController',
+        controller: 'BlogController as blogCtrl',
         templateUrl: 'views/partial/blog'
     }).
 
@@ -39,11 +39,20 @@ exports.config = function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 };
 },{}],2:[function(require,module,exports){
-var BlogController = function ($scope, BlogService) {
+'use strict';
+
+var BlogController = function (BlogService) {
     
-    $scope.blogPosts = BlogService.query();
+    var blogCtrl = this;
+    blogCtrl.blogPosts = BlogService.query();
 
 };
+
+BlogController.prototype = {
+    
+       
+};
+
 
 exports.BlogController = BlogController;
 },{}],3:[function(require,module,exports){
@@ -58,9 +67,16 @@ var BlogDetailController = function ($scope, $routeParams, $sce, BlogService) {
 
 exports.BlogDetailController = BlogDetailController;
 },{}],4:[function(require,module,exports){
-var GameController = function ($scope) {
+'use strict';
 
-    $scope.word = 'Looks like you will have to be bored for a bit longer. This feature is not ready yet..';
+var GameController = function () {
+
+    var gameCtrl = this;
+};
+
+GameController.prototype = {
+
+    word: 'Looks like you will have to be bored for a bit longer. This feature is not ready yet..'
 
 };
 
@@ -154,14 +170,16 @@ angular.module('mainapp', ['ngRoute', 'ngResource'])
 
 .directive('projectType', ProjectDir.ProjectType)
 
-.controller('GameController', ['$scope', GameCtrl.GameController])
-.controller('HomeController',  HomeCtrl.HomeController)
-.controller('BlogController', ['$scope', 'BlogService', BlogCtrl.BlogController])
+.controller('GameController', GameCtrl.GameController)
+.controller('HomeController', HomeCtrl.HomeController)
+.controller('BlogController', BlogCtrl.BlogController)
 .controller('BlogDetailController', ['$scope', '$routeParams', '$sce', 'BlogService', BlogDetailCtrl.BlogDetailController])
 .controller('ProjectController', ['$scope', '$sce', 'ProjectService', ProjectCtrl.ProjectController])
 .controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.ProjectController]);
 
 
+// Inject dependancies after
+BlogCtrl.BlogController.$inject = ['BlogService'];
 
 },{"./config.js":1,"./controllers/BlogCtrl.js":2,"./controllers/BlogDetailCtrl.js":3,"./controllers/GameCtrl.js":4,"./controllers/HomeCtrl.js":5,"./controllers/ProjectCtrl.js":6,"./directives/project_type.directive.js":7,"./modules/admin/admin.controller.js":9,"./modules/admin/admin.service.js":10,"./services/BlogService.js":11,"./services/ProjectService.js":12}],9:[function(require,module,exports){
 exports.AdminController = function ($scope, AdminService) {

@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 var HomeController = require('../../controllers/HomeCtrl.js');
 
-suite('Home Controller test', function () {
+suite('HomeController test', function () {
     
     var HomeCtrl;
     

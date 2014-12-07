@@ -1,6 +1,13 @@
-var GameController = function ($scope) {
+'use strict';
 
-    $scope.word = 'Looks like you will have to be bored for a bit longer. This feature is not ready yet..';
+var GameController = function () {
+
+    var gameCtrl = this;
+};
+
+GameController.prototype = {
+
+    word: 'Looks like you will have to be bored for a bit longer. This feature is not ready yet..'
 
 };
 

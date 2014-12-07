@@ -1,7 +1,16 @@
-var BlogController = function ($scope, BlogService) {
+'use strict';
+
+var BlogController = function (BlogService) {
     
-    $scope.blogPosts = BlogService.query();
+    var blogCtrl = this;
+    blogCtrl.blogPosts = BlogService.query();
 
 };
+
+BlogController.prototype = {
+    
+       
+};
+
 
 exports.BlogController = BlogController;
