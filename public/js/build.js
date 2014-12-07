@@ -28,7 +28,7 @@ exports.config = function ($routeProvider, $locationProvider) {
     }).
 
     when('/blog/:id', {
-        controller: 'BlogDetailController',
+        controller: 'BlogDetailController as blogDetCtrl',
         templateUrl: 'views/partial/blogdetail'
     }).
     
@@ -56,13 +56,25 @@ BlogController.prototype = {
 
 exports.BlogController = BlogController;
 },{}],3:[function(require,module,exports){
-var BlogDetailController = function ($scope, $routeParams, $sce, BlogService) {
-    
-    $scope.blogPost = BlogService.get({id: $routeParams.id});
+var BlogDetailController = function ($routeParams, $sce, BlogService) {
 
-    $scope.renderHtml = function (html_code) {
-        return $sce.trustAsHtml(html_code);
-    };
+    var blogDetCtrl = this;
+    blogDetCtrl.routeParams_ = $routeParams;
+    blogDetCtrl.sce_ = $sce;
+    blogDetCtrl.blogService_ = BlogService;
+
+    blogDetCtrl.blogPost = blogDetCtrl.blogService_.get({
+        id: blogDetCtrl.routeParams_.id
+    });
+
+};
+
+BlogDetailController.prototype = {
+
+    renderHtml: function (htmlString) {
+        return this.sce_.trustAsHtml(htmlString);
+    }
+
 };
 
 exports.BlogDetailController = BlogDetailController;
@@ -173,13 +185,14 @@ angular.module('mainapp', ['ngRoute', 'ngResource'])
 .controller('GameController', GameCtrl.GameController)
 .controller('HomeController', HomeCtrl.HomeController)
 .controller('BlogController', BlogCtrl.BlogController)
-.controller('BlogDetailController', ['$scope', '$routeParams', '$sce', 'BlogService', BlogDetailCtrl.BlogDetailController])
+.controller('BlogDetailController', BlogDetailCtrl.BlogDetailController)
 .controller('ProjectController', ['$scope', '$sce', 'ProjectService', ProjectCtrl.ProjectController])
 .controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.ProjectController]);
 
 
 // Inject dependancies after
 BlogCtrl.BlogController.$inject = ['BlogService'];
+BlogDetailCtrl.BlogDetailController.$inject = ['$routeParams', '$sce', 'BlogService'];
 
 },{"./config.js":1,"./controllers/BlogCtrl.js":2,"./controllers/BlogDetailCtrl.js":3,"./controllers/GameCtrl.js":4,"./controllers/HomeCtrl.js":5,"./controllers/ProjectCtrl.js":6,"./directives/project_type.directive.js":7,"./modules/admin/admin.controller.js":9,"./modules/admin/admin.service.js":10,"./services/BlogService.js":11,"./services/ProjectService.js":12}],9:[function(require,module,exports){
 exports.AdminController = function ($scope, AdminService) {

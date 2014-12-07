@@ -27,10 +27,11 @@ angular.module('mainapp', ['ngRoute', 'ngResource'])
 .controller('GameController', GameCtrl.GameController)
 .controller('HomeController', HomeCtrl.HomeController)
 .controller('BlogController', BlogCtrl.BlogController)
-.controller('BlogDetailController', ['$scope', '$routeParams', '$sce', 'BlogService', BlogDetailCtrl.BlogDetailController])
+.controller('BlogDetailController', BlogDetailCtrl.BlogDetailController)
 .controller('ProjectController', ['$scope', '$sce', 'ProjectService', ProjectCtrl.ProjectController])
 .controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.ProjectController]);
 
 
 // Inject dependancies after
 BlogCtrl.BlogController.$inject = ['BlogService'];
+BlogDetailCtrl.BlogDetailController.$inject = ['$routeParams', '$sce', 'BlogService'];
