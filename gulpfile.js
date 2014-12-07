@@ -15,8 +15,8 @@ gulp.task('app-tests', function () {
 });
 
 // This task should only be used with npm test command
-gulp.task('unit-tests', function () {
-    return gulp.src('qa/app/*.js')
+gulp.task('api-tests', function () {
+    return gulp.src('qa/api/*.js')
         .pipe(mocha({
             ui: 'tdd'
         }));
