@@ -2,7 +2,7 @@ exports.config = function ($routeProvider, $locationProvider) {
     $routeProvider.
 
     when('/', {
-        controller: 'HomeController',
+        controller: 'HomeController as homeCtrl',
         templateUrl: "/views/partial/home"
     }).
     

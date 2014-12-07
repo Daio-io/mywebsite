@@ -1,4 +1,3 @@
-var app = angular.module('mainapp', ['ngRoute', 'ngResource']);
 //** CONTROLLERS
 var GameCtrl = require('./controllers/GameCtrl.js');
 var HomeCtrl = require('./controllers/HomeCtrl.js');
@@ -16,19 +15,20 @@ var BlogServ =  require('./services/BlogService.js');
 var AdminServ = require('./modules/admin/admin.service.js');
 
 var appRouteConfig = require('./config.js');
-app.config(['$routeProvider', '$locationProvider', appRouteConfig.config]);
 
-app.factory('ProjectService', ['$resource', ProjectServ.ProjectsService]);
-app.factory('BlogService', ['$resource', BlogServ.BlogService]);
-app.factory('AdminService', ['$resource', AdminServ.AdminServiceService]);
+angular.module('mainapp', ['ngRoute', 'ngResource'])
+.config(['$routeProvider', '$locationProvider', appRouteConfig.config])
+.factory('ProjectService', ['$resource', ProjectServ.ProjectsService])
+.factory('BlogService', ['$resource', BlogServ.BlogService])
+.factory('AdminService', ['$resource', AdminServ.AdminServiceService])
 
-app.directive('projectType', ProjectDir.ProjectType);
+.directive('projectType', ProjectDir.ProjectType)
 
-app.controller('GameController', ['$scope', GameCtrl.GameController]);
-app.controller('HomeController', ['$scope', HomeCtrl.HomeController]);
-app.controller('BlogController', ['$scope', 'BlogService', BlogCtrl.BlogController]);
-app.controller('BlogDetailController', ['$scope', '$routeParams', '$sce', 'BlogService', BlogDetailCtrl.BlogDetailController]);
-app.controller('ProjectController', ['$scope', '$sce', 'ProjectService', ProjectCtrl.ProjectController]);
-app.controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.ProjectController]);
+.controller('GameController', ['$scope', GameCtrl.GameController])
+.controller('HomeController',  HomeCtrl.HomeController)
+.controller('BlogController', ['$scope', 'BlogService', BlogCtrl.BlogController])
+.controller('BlogDetailController', ['$scope', '$routeParams', '$sce', 'BlogService', BlogDetailCtrl.BlogDetailController])
+.controller('ProjectController', ['$scope', '$sce', 'ProjectService', ProjectCtrl.ProjectController])
+.controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.ProjectController]);
 
 
