@@ -1,5 +1,12 @@
-exports.BlogService = function($resource) {
+'use strict';
+
+var BlogService = function($resource) {
     
-    return $resource('/api/blogs/:id', {id : '@id'} );
+    var blogServ = this;
+    blogServ.resource_ = $resource; 
+    
+    return blogServ.resource_('/api/blogs/:id', {id : '@id'} );
     
 };
+
+exports.BlogService = BlogService;

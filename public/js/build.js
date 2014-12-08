@@ -194,8 +194,8 @@ var appRouteConfig = require('./config.js');
 
 angular.module('mainapp', ['ngRoute', 'ngResource'])
 .config(['$routeProvider', '$locationProvider', appRouteConfig.config])
-.factory('ProjectService', ['$resource', ProjectServ.ProjectsService])
-.factory('BlogService', ['$resource', BlogServ.BlogService])
+.factory('ProjectService', ProjectServ.ProjectsService)
+.factory('BlogService', BlogServ.BlogService)
 .factory('AdminService', ['$resource', AdminServ.AdminServiceService])
 
 .directive('projectType', ProjectDir.ProjectType)
@@ -213,6 +213,9 @@ BlogCtrl.BlogController.$inject = ['BlogService'];
 BlogDetailCtrl.BlogDetailController.$inject = ['$routeParams', '$sce', 'BlogService'];
 ProjectCtrl.ProjectController.$inject = ['$sce', 'ProjectService'];
 
+BlogServ.BlogService.$inject = ['$resource'];
+ProjectServ.ProjectsService.$inject = ['$resource'];
+
 },{"./config.js":1,"./controllers/BlogCtrl.js":2,"./controllers/BlogDetailCtrl.js":3,"./controllers/GameCtrl.js":4,"./controllers/HomeCtrl.js":5,"./controllers/ProjectCtrl.js":6,"./directives/project_type.directive.js":7,"./modules/admin/admin.controller.js":9,"./modules/admin/admin.service.js":10,"./services/BlogService.js":11,"./services/ProjectService.js":12}],9:[function(require,module,exports){
 exports.AdminController = function ($scope, AdminService) {
 
@@ -226,15 +229,29 @@ exports.AdminService = function($resource) {
     
 };
 },{}],11:[function(require,module,exports){
-exports.BlogService = function($resource) {
+'use strict';
+
+var BlogService = function($resource) {
     
-    return $resource('/api/blogs/:id', {id : '@id'} );
+    var blogServ = this;
+    blogServ.resource_ = $resource; 
+    
+    return blogServ.resource_('/api/blogs/:id', {id : '@id'} );
     
 };
+
+exports.BlogService = BlogService;
 },{}],12:[function(require,module,exports){
-exports.ProjectsService = function($resource) {
+'use strict';
+
+var ProjectsService = function($resource) {
     
-    return $resource('/api/projects/:id', {id : '@id'} );
+    var projServ = this;
+    projServ.resource_ = $resource;
+    
+    return projServ.resource_('/api/projects/:id', {id : '@id'} );
     
 };
+
+exports.ProjectsService = ProjectsService;
 },{}]},{},[8])

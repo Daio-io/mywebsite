@@ -20,8 +20,8 @@ var appRouteConfig = require('./config.js');
 
 angular.module('mainapp', ['ngRoute', 'ngResource'])
 .config(['$routeProvider', '$locationProvider', appRouteConfig.config])
-.factory('ProjectService', ['$resource', ProjectServ.ProjectsService])
-.factory('BlogService', ['$resource', BlogServ.BlogService])
+.factory('ProjectService', ProjectServ.ProjectsService)
+.factory('BlogService', BlogServ.BlogService)
 .factory('AdminService', ['$resource', AdminServ.AdminServiceService])
 
 .directive('projectType', ProjectDir.ProjectType)
@@ -38,3 +38,6 @@ angular.module('mainapp', ['ngRoute', 'ngResource'])
 BlogCtrl.BlogController.$inject = ['BlogService'];
 BlogDetailCtrl.BlogDetailController.$inject = ['$routeParams', '$sce', 'BlogService'];
 ProjectCtrl.ProjectController.$inject = ['$sce', 'ProjectService'];
+
+BlogServ.BlogService.$inject = ['$resource'];
+ProjectServ.ProjectsService.$inject = ['$resource'];
