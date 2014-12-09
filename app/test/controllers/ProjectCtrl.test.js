@@ -6,20 +6,27 @@ var ProjectController = require('../../controllers/ProjectCtrl.js');
 suite('ProjectController test', function () {
 
     var ProjectCtrl;
-    var projServStub = require('../stubs/ProjectService.stub.js').ProjStub;
+    var projServStub;
 
     setup(function () {
 
-        //Need to stub ProjectService
+        // Stub the service
+        projServStub = require('../stubs/ProjectService.stub.js').ProjStub;
+        
+        // Create new controller
         ProjectCtrl = new ProjectController.ProjectController(projServStub);
 
     });
 
-    //Placeholder test
-    test('should have a projects defined', function (done) {
+    test('should have array of projects defined on scope', function (done) {
 
         for (var i = 0; i < ProjectCtrl.projects.length; i++) {
-            expect(ProjectCtrl.projects[i].stuff).to.equal('stuuf');
+            expect(ProjectCtrl.projects[i].name).to.exist;
+            expect(ProjectCtrl.projects[i].description).to.exist;
+            expect(ProjectCtrl.projects[i].platform).to.exist;
+            expect(ProjectCtrl.projects[i].projectURL).to.exist;
+            expect(ProjectCtrl.projects[i].imageURL).to.exist;
+            expect(ProjectCtrl.projects[i].date).to.exist;
         }
 
         done();

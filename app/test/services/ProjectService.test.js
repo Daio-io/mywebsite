@@ -13,12 +13,6 @@ suite('ProjectService test', function () {
     });
 
     //Placeholder test
-    test('Should return a Project resource object', function (done) {
-
-        //Placeholder expect
-        expect(ProjServ.query()).to.exist;
-        done();
-
-    });
+    test('Should return a Project resource object');
 
 });

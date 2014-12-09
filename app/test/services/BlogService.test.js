@@ -1,3 +1,5 @@
+'use strict'; 
+
 var expect = require('chai').expect;
 var BlogService = require('../../Services/BlogService.js');
 
@@ -11,13 +13,6 @@ suite('BlogService test', function () {
         BlogServ = new BlogService.BlogService(resource);
     });
 
-    //Placeholder test
-    test('Should return a blogpost resource object', function (done) {
-
-        //Placeholder expect
-        expect(BlogServ.query()).to.exist;
-        done();
-        
-    });
+    test('Should return a blogpost resource object');
     
 });

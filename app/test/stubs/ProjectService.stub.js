@@ -1,16 +1,31 @@
-'use struct';
+'use strict';
 
 var Stub = {
     query: function () {
         return [{
-                stuff: 'stuuf'
-        },
+                "name": "TestProject",
+                "description": "A description",
+                "platform": "Android",
+                "projectURL": "www.test",
+                "imageURL": "test",
+                "date": "test"
+            },
             {
-                stuff: 'stuuf'
-        },
+                "name": "TestProject",
+                "description": "A description",
+                "platform": "Android",
+                "projectURL": "www.test",
+                "imageURL": "test",
+                "date": "test"
+            },
             {
-                stuff: 'stuuf'
-        }];
+                "name": "TestProject",
+                "description": "A description",
+                "platform": "Android",
+                "projectURL": "www.test",
+                "imageURL": "test",
+                "date": "test"
+            }];
     }
 
 };
