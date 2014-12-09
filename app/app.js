@@ -12,7 +12,7 @@ var BlogDetailCtrl = require('./controllers/BlogDetailCtrl.js');
 var ProjectDir = require('./directives/project_type.directive.js');
 
 //** SERVICES
-var ProjectServ =  require('./services/ProjectService.js');
+var ProjectServ =  require('./services/ProjectsService.js');
 var BlogServ =  require('./services/BlogService.js');
 var AdminServ = require('./modules/admin/admin.service.js');
 
@@ -37,7 +37,7 @@ angular.module('mainapp', ['ngRoute', 'ngResource'])
 // Inject dependancies after
 BlogCtrl.BlogController.$inject = ['BlogService'];
 BlogDetailCtrl.BlogDetailController.$inject = ['$routeParams', '$sce', 'BlogService'];
-ProjectCtrl.ProjectController.$inject = ['$sce', 'ProjectService'];
+ProjectCtrl.ProjectController.$inject = ['ProjectService'];
 
 BlogServ.BlogService.$inject = ['$resource'];
 ProjectServ.ProjectsService.$inject = ['$resource'];

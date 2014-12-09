@@ -121,10 +121,9 @@ exports.HomeController = HomeController;
 },{}],6:[function(require,module,exports){
 'use strict';
 
-var ProjectController = function ($sce, ProjectService) {
+var ProjectController = function (ProjectService) {
 
     var projectCtrl = this;
-    projectCtrl.sce_ = $sce;
     projectCtrl.projectService_ = ProjectService;
     
     projectCtrl.projects = projectCtrl.projectService_.query();
@@ -186,7 +185,7 @@ var BlogDetailCtrl = require('./controllers/BlogDetailCtrl.js');
 var ProjectDir = require('./directives/project_type.directive.js');
 
 //** SERVICES
-var ProjectServ =  require('./services/ProjectService.js');
+var ProjectServ =  require('./services/ProjectsService.js');
 var BlogServ =  require('./services/BlogService.js');
 var AdminServ = require('./modules/admin/admin.service.js');
 
@@ -211,12 +210,12 @@ angular.module('mainapp', ['ngRoute', 'ngResource'])
 // Inject dependancies after
 BlogCtrl.BlogController.$inject = ['BlogService'];
 BlogDetailCtrl.BlogDetailController.$inject = ['$routeParams', '$sce', 'BlogService'];
-ProjectCtrl.ProjectController.$inject = ['$sce', 'ProjectService'];
+ProjectCtrl.ProjectController.$inject = ['ProjectService'];
 
 BlogServ.BlogService.$inject = ['$resource'];
 ProjectServ.ProjectsService.$inject = ['$resource'];
 
-},{"./config.js":1,"./controllers/BlogCtrl.js":2,"./controllers/BlogDetailCtrl.js":3,"./controllers/GameCtrl.js":4,"./controllers/HomeCtrl.js":5,"./controllers/ProjectCtrl.js":6,"./directives/project_type.directive.js":7,"./modules/admin/admin.controller.js":9,"./modules/admin/admin.service.js":10,"./services/BlogService.js":11,"./services/ProjectService.js":12}],9:[function(require,module,exports){
+},{"./config.js":1,"./controllers/BlogCtrl.js":2,"./controllers/BlogDetailCtrl.js":3,"./controllers/GameCtrl.js":4,"./controllers/HomeCtrl.js":5,"./controllers/ProjectCtrl.js":6,"./directives/project_type.directive.js":7,"./modules/admin/admin.controller.js":9,"./modules/admin/admin.service.js":10,"./services/BlogService.js":11,"./services/ProjectsService.js":12}],9:[function(require,module,exports){
 exports.AdminController = function ($scope, AdminService) {
 
     $scope.word = 'admin';
