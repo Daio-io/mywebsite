@@ -1,1 +1,256 @@
-!function e(r,o,t){function l(n,c){if(!o[n]){if(!r[n]){var s="function"==typeof require&&require;if(!c&&s)return s(n,!0);if(i)return i(n,!0);throw new Error("Cannot find module '"+n+"'")}var a=o[n]={exports:{}};r[n][0].call(a.exports,function(e){var o=r[n][1][e];return l(o?o:e)},a,a.exports,e,r,o,t)}return o[n].exports}for(var i="function"==typeof require&&require,n=0;n<t.length;n++)l(t[n]);return l}({1:[function(e,r,o){"use strict";o.config=function(e,r){e.when("/",{controller:"HomeController as homeCtrl",templateUrl:"/views/partial/home"}).when("/admin",{controller:"AdminController",templateUrl:"/views/partial/admin"}).when("/bored",{controller:"GameController as gameCtrl",templateUrl:"/views/partial/404"}).when("/projects",{controller:"ProjectController as projectCtrl",templateUrl:"views/partial/projects"}).when("/blog",{controller:"BlogController as blogCtrl",templateUrl:"views/partial/blog"}).when("/blog/:id",{controller:"BlogDetailController as blogDetCtrl",templateUrl:"views/partial/blogdetail"}).otherwise({templateUrl:"views/partial/404"}),r.html5Mode(!0)}},{}],2:[function(e,r,o){"use strict";var t=function(e){var r=this;r.blogPosts=e.query()};t.prototype={},o.BlogController=t},{}],3:[function(e,r,o){"use strict";var t=function(e,r,o){var t=this;t.routeParams_=e,t.sce_=r,t.blogService_=o,t.blogPost=t.blogService_.get({id:t.routeParams_.id})};t.prototype={renderHtml:function(e){return this.sce_.trustAsHtml(e)}},o.BlogDetailController=t},{}],4:[function(e,r,o){"use strict";var t=function(){};t.prototype={word:"Looks like you will have to be bored for a bit longer. This feature is not ready yet.."},o.GameController=t},{}],5:[function(e,r,o){"use strict";var t=function(){};t.prototype={aboutMe:{name:"Dai",description:"MEAN Stack and Android Developer",contact:"dle.williams1@gmail.com",github:"https://github.com/daveloper87"}},o.HomeController=t},{}],6:[function(e,r,o){"use strict";var t=function(e){var r=this;r.projectService_=e,r.projects=r.projectService_.query()};t.prototype={},o.ProjectController=t},{}],7:[function(e,r,o){"use strict";var t=function(){return{restrict:"E",templateUrl:"views/partial/project_tile",replace:!1,scope:{project:"=projectObject"},link:function(e,r,o){e.proj=e.$eval(o.projectObject);var t=e.proj.platform.toUpperCase();"ANDROID"===t?(e.icon="android_icon.png",e.css="tile-android"):"WEB"===t&&(e.icon="web_icon.png",e.css="tile-web")}}};o.ProjectType=t},{}],8:[function(e){"use strict";var r=e("./controllers/GameCtrl.js"),o=e("./controllers/HomeCtrl.js"),t=e("./controllers/BlogCtrl.js"),l=e("./controllers/ProjectCtrl.js"),i=(e("./modules/admin/admin.controller.js"),e("./controllers/BlogDetailCtrl.js")),n=e("./directives/project_type.directive.js"),c=e("./services/ProjectsService.js"),s=e("./services/BlogService.js"),a=e("./modules/admin/admin.service.js"),u=e("./config.js");angular.module("mainapp",["ngRoute","ngResource"]).config(["$routeProvider","$locationProvider",u.config]).factory("ProjectService",c.ProjectsService).factory("BlogService",s.BlogService).factory("AdminService",["$resource",a.AdminServiceService]).directive("projectType",n.ProjectType).controller("GameController",r.GameController).controller("HomeController",o.HomeController).controller("BlogController",t.BlogController).controller("BlogDetailController",i.BlogDetailController).controller("ProjectController",l.ProjectController).controller("AdminController",["$scope","AdminService",l.ProjectController]),t.BlogController.$inject=["BlogService"],i.BlogDetailController.$inject=["$routeParams","$sce","BlogService"],l.ProjectController.$inject=["ProjectService"],s.BlogService.$inject=["$resource"],c.ProjectsService.$inject=["$resource"]},{"./config.js":1,"./controllers/BlogCtrl.js":2,"./controllers/BlogDetailCtrl.js":3,"./controllers/GameCtrl.js":4,"./controllers/HomeCtrl.js":5,"./controllers/ProjectCtrl.js":6,"./directives/project_type.directive.js":7,"./modules/admin/admin.controller.js":9,"./modules/admin/admin.service.js":10,"./services/BlogService.js":11,"./services/ProjectsService.js":12}],9:[function(e,r,o){o.AdminController=function(e){e.word="admin"}},{}],10:[function(e,r,o){o.AdminService=function(e){return e("/login/:id",{id:"@id"})}},{}],11:[function(e,r,o){"use strict";var t=function(e){var r=this;return r.resource_=e,r.resource_("/api/blogs/:id",{id:"@id"})};o.BlogService=t},{}],12:[function(e,r,o){"use strict";var t=function(e){var r=this;return r.resource_=e,r.resource_("/api/projects/:id",{id:"@id"})};o.ProjectsService=t},{}]},{},[8]);
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+
+exports.config = function ($routeProvider, $locationProvider) {
+    $routeProvider.
+
+    when('/', {
+        controller: 'HomeController as homeCtrl',
+        templateUrl: "/views/partial/home"
+    }).
+    
+    when('/admin', {
+        controller: 'AdminController',
+        templateUrl: "/views/partial/admin"
+    }).
+        
+    when('/bored', {
+        controller: 'GameController as gameCtrl',
+        templateUrl: "/views/partial/404"
+    }).
+    
+    when('/projects', {
+        controller: 'ProjectController as projectCtrl',
+        templateUrl: 'views/partial/projects'
+    }).
+    
+    when('/blog', {
+        controller: 'BlogController as blogCtrl',
+        templateUrl: 'views/partial/blog'
+    }).
+
+    when('/blog/:id', {
+        controller: 'BlogDetailController as blogDetCtrl',
+        templateUrl: 'views/partial/blogdetail'
+    }).
+    
+    otherwise({
+        templateUrl: 'views/partial/404'
+    });
+
+    $locationProvider.html5Mode(true);
+};
+},{}],2:[function(require,module,exports){
+'use strict';
+
+var BlogController = function (BlogService) {
+    
+    var blogCtrl = this;
+    blogCtrl.blogPosts = BlogService.query();
+
+};
+
+BlogController.prototype = {
+
+};
+
+
+exports.BlogController = BlogController;
+},{}],3:[function(require,module,exports){
+'use strict';
+
+var BlogDetailController = function ($routeParams, $sce, BlogService) {
+
+    var blogDetCtrl = this;
+    blogDetCtrl.routeParams_ = $routeParams;
+    blogDetCtrl.sce_ = $sce;
+    blogDetCtrl.blogService_ = BlogService;
+
+    blogDetCtrl.blogPost = blogDetCtrl.blogService_.get({
+        id: blogDetCtrl.routeParams_.id
+    });
+
+};
+
+BlogDetailController.prototype = {
+
+    renderHtml: function (htmlString) {
+        return this.sce_.trustAsHtml(htmlString);
+    }
+
+};
+
+exports.BlogDetailController = BlogDetailController;
+},{}],4:[function(require,module,exports){
+'use strict';
+
+var GameController = function () {
+
+    var gameCtrl = this;
+};
+
+GameController.prototype = {
+
+    word: 'Looks like you will have to be bored for a bit longer. This feature is not ready yet..'
+
+};
+
+exports.GameController = GameController;
+},{}],5:[function(require,module,exports){
+'use strict';
+
+var HomeController = function () {
+
+    var homeCtrl = this;
+
+};
+
+HomeController.prototype = {
+
+    aboutMe: {
+        name: 'Dai',
+        description: 'MEAN Stack and Android Developer',
+        contact: 'dle.williams1@gmail.com',
+        github: 'https://github.com/daveloper87',
+    }
+
+};
+
+exports.HomeController = HomeController;
+},{}],6:[function(require,module,exports){
+'use strict';
+
+var ProjectController = function (ProjectService) {
+
+    var projectCtrl = this;
+    projectCtrl.projectService_ = ProjectService;
+    
+    projectCtrl.projects = projectCtrl.projectService_.query();
+
+};
+
+// 
+ProjectController.prototype = {
+    
+    
+};
+
+exports.ProjectController = ProjectController;
+},{}],7:[function(require,module,exports){
+'use strict';
+var ProjectType = function () {
+
+    return {
+        restrict: 'E',
+        templateUrl: 'views/partial/project_tile',
+        replace: false,
+        scope: {
+            project: '=projectObject',
+        },
+        link: function (scope, elems, attrs) {
+
+            scope.proj = scope.$eval(attrs.projectObject);
+
+            var pF = scope.proj.platform.toUpperCase();
+
+            if (pF === 'ANDROID') {
+
+                scope.icon = 'android_icon.png';
+                scope.css = 'tile-android';
+
+            } else if (pF === 'WEB') {
+
+                scope.icon = 'web_icon.png';
+                scope.css = 'tile-web';
+            }
+
+        }
+
+    };
+};
+
+exports.ProjectType = ProjectType;
+},{}],8:[function(require,module,exports){
+'use strict';
+
+//** CONTROLLERS
+var GameCtrl = require('./controllers/GameCtrl.js');
+var HomeCtrl = require('./controllers/HomeCtrl.js');
+var BlogCtrl = require('./controllers/BlogCtrl.js');
+var ProjectCtrl = require('./controllers/ProjectCtrl.js');
+var AdminCtrl = require('./modules/admin/admin.controller.js');
+var BlogDetailCtrl = require('./controllers/BlogDetailCtrl.js');
+
+//** DIRECTIVES
+var ProjectDir = require('./directives/project_type.directive.js');
+
+//** SERVICES
+var ProjectServ =  require('./services/ProjectsService.js');
+var BlogServ =  require('./services/BlogService.js');
+var AdminServ = require('./modules/admin/admin.service.js');
+
+var appRouteConfig = require('./config.js');
+
+angular.module('mainapp', ['ngRoute', 'ngResource'])
+.config(['$routeProvider', '$locationProvider', appRouteConfig.config])
+.factory('ProjectService', ProjectServ.ProjectsService)
+.factory('BlogService', BlogServ.BlogService)
+.factory('AdminService', ['$resource', AdminServ.AdminServiceService])
+
+.directive('projectType', ProjectDir.ProjectType)
+
+.controller('GameController', GameCtrl.GameController)
+.controller('HomeController', HomeCtrl.HomeController)
+.controller('BlogController', BlogCtrl.BlogController)
+.controller('BlogDetailController', BlogDetailCtrl.BlogDetailController)
+.controller('ProjectController', ProjectCtrl.ProjectController)
+.controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.ProjectController]);
+
+
+// Inject dependancies after
+BlogCtrl.BlogController.$inject = ['BlogService'];
+BlogDetailCtrl.BlogDetailController.$inject = ['$routeParams', '$sce', 'BlogService'];
+ProjectCtrl.ProjectController.$inject = ['ProjectService'];
+
+BlogServ.BlogService.$inject = ['$resource'];
+ProjectServ.ProjectsService.$inject = ['$resource'];
+
+},{"./config.js":1,"./controllers/BlogCtrl.js":2,"./controllers/BlogDetailCtrl.js":3,"./controllers/GameCtrl.js":4,"./controllers/HomeCtrl.js":5,"./controllers/ProjectCtrl.js":6,"./directives/project_type.directive.js":7,"./modules/admin/admin.controller.js":9,"./modules/admin/admin.service.js":10,"./services/BlogService.js":11,"./services/ProjectsService.js":12}],9:[function(require,module,exports){
+exports.AdminController = function ($scope, AdminService) {
+
+    $scope.word = 'admin';
+
+};
+},{}],10:[function(require,module,exports){
+exports.AdminService = function($resource) {
+    
+    return $resource('/login/:id', {id : '@id'} );
+    
+};
+},{}],11:[function(require,module,exports){
+'use strict';
+
+var BlogService = function($resource) {
+    
+    var blogServ = this;
+    blogServ.resource_ = $resource; 
+    
+    return blogServ.resource_('/api/blogs/:id', {id : '@id'} );
+    
+};
+
+exports.BlogService = BlogService;
+},{}],12:[function(require,module,exports){
+'use strict';
+
+var ProjectsService = function($resource) {
+    
+    var projServ = this;
+    projServ.resource_ = $resource;
+    
+    return projServ.resource_('/api/projects/:id', {id : '@id'} );
+    
+};
+
+exports.ProjectsService = ProjectsService;
+},{}]},{},[8])
