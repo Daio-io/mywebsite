@@ -52,7 +52,6 @@ var BlogController = function (BlogService) {
 
 BlogController.prototype = {
 
-       
 };
 
 
