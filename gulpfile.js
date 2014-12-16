@@ -21,9 +21,9 @@ gulp.task('api-tests', function () {
 });
 
 gulp.task('build', function () {
-    // Single entry point to browserify
     gulp.src('./app/app.js')
         .pipe(browserify({}))
+        .on('error', catchError)
         .pipe(rename('build.js'))
         .pipe(ngAnnotate())
     .pipe(gulp.dest('./public/js'))
@@ -32,6 +32,7 @@ gulp.task('build', function () {
 gulp.task('deploy', function () {
     gulp.src('./app/app.js')
         .pipe(browserify({}))
+        .on('error', catchError)
         .pipe(rename('build.js'))
         .pipe(ngAnnotate())
         .pipe(uglify())
@@ -45,3 +46,11 @@ gulp.task('watch', function () {
 });
 
 gulp.task('default', ['build', 'unit-tests'], function () {});
+
+function catchError(err) {
+
+    console.log(err + ' error. Fix and rebuild');
+
+    this.emit('end');
+
+};
