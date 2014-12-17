@@ -3,17 +3,17 @@
 //** CONTROLLERS
 var GameCtrl = require('./controllers/GameCtrl.js');
 var HomeCtrl = require('./controllers/HomeCtrl.js');
-var BlogCtrl = require('./controllers/BlogCtrl.js');
-var ProjectCtrl = require('./controllers/ProjectCtrl.js');
+var BlogCtrl = require('./blog/blog.controller.js');
+var ProjectCtrl = require('./project/project.controller.js');
 var AdminCtrl = require('./modules/admin/admin.controller.js');
-var BlogDetailCtrl = require('./controllers/BlogDetailCtrl.js');
+var BlogDetailCtrl = require('./blog/blogdetail.controller.js');
 
 //** DIRECTIVES
 var ProjectDir = require('./directives/project_type.directive.js');
 
 //** SERVICES
-var ProjectServ =  require('./services/ProjectsService.js');
-var BlogServ =  require('./services/BlogService.js');
+var ProjectServ =  require('./project/project.service.js');
+var BlogServ =  require('./blog/blog.service.js');
 var AdminServ = require('./modules/admin/admin.service.js');
 
 var appRouteConfig = require('./config.js');
@@ -22,7 +22,7 @@ angular.module('mainapp', ['ngRoute', 'ngResource'])
 .config(['$routeProvider', '$locationProvider', appRouteConfig.config])
 .factory('ProjectService', ProjectServ.ProjectsService)
 .factory('BlogService', BlogServ.BlogService)
-.factory('AdminService', ['$resource', AdminServ.AdminServiceService])
+.factory('AdminService', ['$resource', AdminServ.AdminService])
 
 .directive('projectType', ProjectDir.ProjectType)
 
@@ -34,7 +34,7 @@ angular.module('mainapp', ['ngRoute', 'ngResource'])
 .controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.ProjectController]);
 
 
-// Inject dependancies after
+// Inject dependencies after
 BlogCtrl.BlogController.$inject = ['BlogService'];
 BlogDetailCtrl.BlogDetailController.$inject = ['$routeParams', '$sce', 'BlogService'];
 ProjectCtrl.ProjectController.$inject = ['ProjectService'];

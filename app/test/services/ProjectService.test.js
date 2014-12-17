@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var ProjectsService = require('../../Services/ProjectsService.js');
+var ProjectsService = require('../../project/project.service.js');
 
 suite('ProjectService test', function () {
 
@@ -9,7 +9,7 @@ suite('ProjectService test', function () {
     
     setup(function () {
         //need to stub resource
-        ProjServ = new ProjectsService.ProjectsService($resource);
+        ProjServ = new project.ProjectsService($resource);
     });
 
     //Placeholder test

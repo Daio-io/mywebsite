@@ -1,7 +1,7 @@
 'use strict'; 
 
 var expect = require('chai').expect;
-var BlogService = require('../../Services/BlogService.js');
+var BlogService = require('../../blog/blog.service.js');
 
 suite('BlogService test', function () {
     
@@ -10,7 +10,7 @@ suite('BlogService test', function () {
     setup(function () {
 
         //need to stub resource
-        BlogServ = new BlogService.BlogService(resource);
+        BlogServ = new blog.BlogService(resource);
     });
 
     test('Should return a blogpost resource object');
