@@ -67,10 +67,6 @@ suite('API tests', function () {
     });
 
 
-    teardown(function () {
-
-    });
-
     function postMessage(postData) {
         return rest.post(baseUrl + '/api/blogs', {
             data: postData
