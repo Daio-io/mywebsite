@@ -1,18 +1,18 @@
 var project = require('./project/project.controller.js');
 var blog = require('./blog/blog.controller.js');
+var router = require('express').Router();
 
-module.exports = function (app, rest) {
 
-    //** Project Routes **//
-    rest.get('/project', project.getAllProjects);
-    rest.get('/project/:id', project.getProject);
-    rest.post('/project', project.postProject);
-    rest.del('/project/:id', project.deleteProject);
-    
-    //** Blog Routes **//
-    rest.get('/blogs', blog.getAllBlogPosts);
-    rest.get('/blogs/:id', blog.getBlogPost);
-    rest.post('/blogs', blog.postBlogPost);
-    rest.del('/blogs/:id', blog.deleteBlogPost);
+    router.get('/hello', project.getStuff);
+    ////** Project Routes **//
+    //router.get('/project', project.getAllProjects);
+    //router.get('/project/:id', project.getProject);
+    //router.post('/project', project.postProject);
+    //router.delete('/project/:id', project.deleteProject);
+    //
+    ////** Blog Routes **//
+    //router.get('/blogs', blog.getAllBlogPosts);
+    //router.get('/blogs/:id', blog.getBlogPost);
+    //router.post('/blogs', blog.postBlogPost);
 
-};
+exports.router = router;

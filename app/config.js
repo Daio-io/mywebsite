@@ -32,7 +32,7 @@ exports.config = function ($routeProvider, $locationProvider) {
         controller: 'BlogDetailController as blogDetCtrl',
         templateUrl: 'views/partial/blogdetail'
     }).
-    
+
     otherwise({
         templateUrl: 'views/partial/404'
     });
