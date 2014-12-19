@@ -5,7 +5,7 @@ var ProjectsService = function($resource) {
     var projServ = this;
     projServ.resource_ = $resource;
     
-    return projServ.resource_('/api/projects/:id', {id : '@id'} );
+    return projServ.resource_('/api/project/:id', {id : '@id'} );
     
 };
 

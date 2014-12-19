@@ -26,7 +26,7 @@ suite('API tests', function () {
         postMessage(project).on('success',
             function (data) {
                 inserted.project = data.id;
-                rest.get(baseUrl + '/api/projects/' + data.id).on('success', function (response) {
+                rest.get(baseUrl + '/api/project/' + data.id).on('success', function (response) {
                     assert(response.name === project.name);
                     assert(response.description === project.description);
                     assert(response.projectURL === project.projectURL);
@@ -37,11 +37,11 @@ suite('API tests', function () {
             });
     });
 
-    test('I should be able to get all projects from the API', function (done) {
+    test('I should be able to get all project from the API', function (done) {
         postMessage(project);
         postMessage(project);
         postMessage(project).on('success', function (data) {
-            rest.get(baseUrl + '/api/projects').on('success', function (response) {
+            rest.get(baseUrl + '/api/project').on('success', function (response) {
                 assert(response.length >= 3);
                 done();
             });
@@ -73,13 +73,13 @@ suite('API tests', function () {
 
 
     function postMessage(postData) {
-        return rest.post(baseUrl + '/api/projects', {
+        return rest.post(baseUrl + '/api/project', {
             data: postData
         })
     };
 
     function deleteSample(id) {
-        return rest.del(baseUrl + '/api/projects/' + id);
+        return rest.del(baseUrl + '/api/project/' + id);
     };
 
 

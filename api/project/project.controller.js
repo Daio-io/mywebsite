@@ -22,7 +22,7 @@ exports.getProject = function (req, content, callback) {
 exports.getAllProjects = function (req, content, callback) {
     Project.find(null, function (err, found) {
         if (err) return callback({
-            error: 'No projects found'
+            error: 'No project found'
         });
         callback(null, found.map(function (found) {
             return {

@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var ProjectController = require('../../controllers/ProjectCtrl.js');
+var ProjectController = require('../../project/project.controller.js');
 
 suite('ProjectController test', function () {
 
@@ -18,7 +18,7 @@ suite('ProjectController test', function () {
 
     });
 
-    test('should have array of projects defined on scope', function (done) {
+    test('should have array of project defined on scope', function (done) {
 
         for (var i = 0; i < ProjectCtrl.projects.length; i++) {
             expect(ProjectCtrl.projects[i].name).to.exist;
