@@ -86,10 +86,6 @@ exports.config = function ($routeProvider, $locationProvider) {
     when('/blog/:id', {
         controller: 'BlogDetailController as blogDetCtrl',
         templateUrl: 'views/partial/blogdetail'
-    }).
-    
-    otherwise({
-        templateUrl: 'views/partial/404'
     });
 
     $locationProvider.html5Mode(true);

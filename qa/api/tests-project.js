@@ -71,6 +71,15 @@ suite('API tests', function () {
             });
     });
 
+    test('I should get an error when trying to get a project which does not exist', function (done) {
+        var fakeId = 'this_is_not_an_id';
+        rest.get(baseUrl + '/api/project/' + fakeId).on('complete', function (response) {
+            assert(response.status === 'error');
+            done();
+        });
+    });
+
+
 
     function postMessage(postData) {
         return rest.post(baseUrl + '/api/project', {

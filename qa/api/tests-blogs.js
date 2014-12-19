@@ -13,16 +13,11 @@ suite('API tests', function () {
         full: "blog post full description"
     };
 
-    
-    // TODO: set environment to test when running tests so that the db config is changed
-    setup(function () {
-
-    });
 
     test('should be able to send and add a blog post to the API', function (done) {
-        postMessage(blogpost).on('success',
+        postMessage(blogpost).on('complete',
             function (data) {
-                rest.get(baseUrl + '/api/blogs/' + data.id).on('success', function (response) {
+                rest.get(baseUrl + '/api/blogs/' + data.id).on('complete', function (response) {
                     assert(response.title === blogpost.title);
                     assert(response.short === blogpost.short);
                     assert(response.full === blogpost.full);
@@ -35,8 +30,8 @@ suite('API tests', function () {
     test('I should be able to get all blogposts from the API', function (done) {
         postMessage(blogpost);
         postMessage(blogpost);
-        postMessage(blogpost).on('success', function (data) {
-            rest.get(baseUrl + '/api/blogs').on('success', function (response) {
+        postMessage(blogpost).on('complete', function (data) {
+            rest.get(baseUrl + '/api/blogs').on('complete', function (response) {
                 assert(response.length >= 3);
                 done();
             });
@@ -45,7 +40,7 @@ suite('API tests', function () {
     });
 
     test('I should be able to get blogpost by id from API', function (done) {
-        postMessage(blogpost).on('success',
+        postMessage(blogpost).on('complete',
             function (response) {
                 assert.match(response.id, /\w/, 'id must be set');
                 done();
@@ -54,18 +49,23 @@ suite('API tests', function () {
     });
 
     test('I should be able to delete a blogpost from the API', function (done) {
-        postMessage(blogpost).on('success',
+        postMessage(blogpost).on('complete',
             function (data) {
-                deleteSample(data.id).on('success', function (response) {
+                deleteSample(data.id).on('complete', function (response) {
                     assert(response.deleted === 1);
                     done();
                 })
             });
     });
 
-    teardown(function () {
-
+    test('I should get an error when trying to get a blogpost which does not exist', function (done) {
+        var fakeId = 'this_is_not_an_id';
+        rest.get(baseUrl + '/api/blogs/' + fakeId).on('complete', function (response) {
+            assert(response.status === 'error');
+            done();
+        });
     });
+
 
     function postMessage(postData) {
         return rest.post(baseUrl + '/api/blogs', {
