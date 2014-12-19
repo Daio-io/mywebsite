@@ -7,38 +7,45 @@ var Project = require('./project.model.js');
 
 exports.getProject = function (req, res) {
     Project.findById(req.params.id, function (err, found) {
-        if (err) res.status(404).json({
-            status: 'error',
-            message: 'Could not find project'
-        });
-        res.json({
+        if (err) {
+            res.status(404).json({
+                status: 'error',
+                message: 'Could not find project'
+            }).end();
+        }
+        else {
+            res.json({
                 name: found.name,
                 description: found.description,
                 platform: found.platform,
                 projectURL: found.projectURL,
                 imageURL: found.imageURL,
                 date: found.date
-            }
-        );
+            });
+        }
     });
 };
 
 exports.getAllProjects = function (req, res) {
     Project.find(function (err, found) {
-        if (err) res.status(404).json({
-            status: 'error',
-            message: 'No project found'
-        });
-        res.json(found.map(function (f) {
-            return {
-                name: f.name,
-                description: f.description,
-                platform: f.platform,
-                projectURL: f.projectURL,
-                imageURL: f.imageURL,
-                date: f.date
-            }
-        }));
+        if (err) {
+            res.status(404).json({
+                status: 'error',
+                message: 'No project found'
+            }).end();
+        }
+        else {
+            res.json(found.map(function (f) {
+                return {
+                    name: f.name,
+                    description: f.description,
+                    platform: f.platform,
+                    projectURL: f.projectURL,
+                    imageURL: f.imageURL,
+                    date: f.date
+                }
+            }));
+        }
     });
 
 };
@@ -55,13 +62,17 @@ exports.postProject = function (req, res) {
     });
 
     project.save(function (err, saved) {
-        if (err) res.status(500).json({
-            status: 'error',
-            message: 'Failed saving project'
-        });
-        res.json({
-            id: saved._id
-        });
+        if (err) {
+            res.status(500).json({
+                status: 'error',
+                message: 'Failed saving project'
+            }).end();
+        }
+        else {
+            res.json({
+                id: saved._id
+            });
+        }
     });
 };
 
@@ -69,13 +80,15 @@ exports.deleteProject = function (req, res) {
     Project.remove({
         _id: req.params.id
     }, function (err, result) {
-        if (err) res.status(404).json({
-            status: 'error',
-            message: 'Failed to delete: may not exist'
-        });
-        res.json({
-            deleted: result
-        });
-
+        if (err) {
+            res.status(404).json({
+                status: 'error',
+                message: 'Failed to delete: may not exist'
+            }).end();
+        } else {
+            res.json({
+                deleted: result
+            });
+        }
     });
 };
