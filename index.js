@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
-var projectRouter = require('./api/project/project.router.js');
-var blogRouter = require('./api/blog/blog.router.js');
+
 require('./lib/domain.js')(app); // set up a domain for the app
 
 app.use(express.static(__dirname + '/public')); // serve this content to the client without special handling (static)
@@ -9,8 +8,7 @@ require('./lib/middleware.js')(app); // app middleware in here
 
 require('./lib/environment_context.js')(app);
 
-app.use('/api/project', projectRouter.router);
-app.use('/api/blogs', blogRouter.router);
+require('./lib/api_conf.js')(app);
 
 // ** UPDATE db_config.js FOR CONNECTION STRINGS TO DATABASE **
 require('./lib/database_connection.js')(app);
