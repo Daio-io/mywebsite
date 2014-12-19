@@ -1,3 +1,4 @@
+#!/bin/sh
 # ** This script is run from the package.json file using npm test **
 
 #clean up all node running first
