@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Daveloper87/mywebsite.svg)](https://travis-ci.org/Daveloper87/mywebsite)
+
 ## My Website
 
 MEAN Stack website
