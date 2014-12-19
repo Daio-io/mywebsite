@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var BlogDetailController = require('../../controllers/BlogDetailCtrl.js');
+var BlogDetailController = require('../../blog/blogdetail.controller.js');
 
 suite('BlogDetailController test', function () {
 

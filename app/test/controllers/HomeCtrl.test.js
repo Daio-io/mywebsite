@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var HomeController = require('../../controllers/HomeCtrl.js');
+var HomeController = require('../../home/home.controller.js');
 
 suite('HomeController test', function () {
     
