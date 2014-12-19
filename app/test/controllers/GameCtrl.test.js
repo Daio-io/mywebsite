@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var GameController = require('../../controllers/GameCtrl.js');
+var GameController = require('../../game/game.controller.js');
 
 suite('GameController test', function () {
     

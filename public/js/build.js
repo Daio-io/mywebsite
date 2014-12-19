@@ -97,6 +97,57 @@ exports.config = function ($routeProvider, $locationProvider) {
 },{}],5:[function(require,module,exports){
 'use strict';
 
+//** CONTROLLERS
+var GameCtrl = require('./game/game.controller.js');
+var HomeCtrl = require('./home/home.controller.js');
+var BlogCtrl = require('./blog/blog.controller.js');
+var ProjectCtrl = require('./project/project.controller.js');
+var AdminCtrl = require('./modules/admin/admin.controller.js');
+var BlogDetailCtrl = require('./blog/blogdetail.controller.js');
+
+//** DIRECTIVES
+var ProjectDir = require('./project/projectTile.directive.js');
+
+//** SERVICES
+var ProjectServ = require('./project/project.service.js');
+var BlogServ = require('./blog/blog.service.js');
+var AdminServ = require('./modules/admin/admin.service.js');
+
+var appRouteConfig = require('./config.js');
+
+angular.module('mainapp',
+    [
+        'ngRoute',
+        'ngResource'
+    ])
+
+    .config(['$routeProvider', '$locationProvider', appRouteConfig.config])
+
+    .factory('ProjectService', ProjectServ.ProjectsService)
+    .factory('BlogService', BlogServ.BlogService)
+    .factory('AdminService', ['$resource', AdminServ.AdminService])
+
+    .directive('projectType', ProjectDir.ProjectType)
+
+    .controller('GameController', GameCtrl.GameController)
+    .controller('HomeController', HomeCtrl.HomeController)
+    .controller('BlogController', BlogCtrl.BlogController)
+    .controller('BlogDetailController', BlogDetailCtrl.BlogDetailController)
+    .controller('ProjectController', ProjectCtrl.ProjectController)
+    .controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.ProjectController]);
+
+
+// Inject dependencies after
+BlogCtrl.BlogController.$inject = ['BlogService'];
+BlogDetailCtrl.BlogDetailController.$inject = ['$routeParams', '$sce', 'BlogService'];
+ProjectCtrl.ProjectController.$inject = ['ProjectService'];
+
+BlogServ.BlogService.$inject = ['$resource'];
+ProjectServ.ProjectsService.$inject = ['$resource'];
+
+},{"./blog/blog.controller.js":1,"./blog/blog.service.js":2,"./blog/blogdetail.controller.js":3,"./config.js":4,"./game/game.controller.js":6,"./home/home.controller.js":7,"./modules/admin/admin.controller.js":8,"./modules/admin/admin.service.js":9,"./project/project.controller.js":10,"./project/project.service.js":11,"./project/projectTile.directive.js":12}],6:[function(require,module,exports){
+'use strict';
+
 var GameController = function () {
 
     var gameCtrl = this;
@@ -109,7 +160,7 @@ GameController.prototype = {
 };
 
 exports.GameController = GameController;
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 var HomeController = function () {
@@ -130,7 +181,51 @@ HomeController.prototype = {
 };
 
 exports.HomeController = HomeController;
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
+exports.AdminController = function ($scope, AdminService) {
+
+    $scope.word = 'admin';
+
+};
+},{}],9:[function(require,module,exports){
+exports.AdminService = function($resource) {
+    
+    return $resource('/login/:id', {id : '@id'} );
+    
+};
+},{}],10:[function(require,module,exports){
+'use strict';
+
+var ProjectController = function (ProjectService) {
+
+    var projectCtrl = this;
+    projectCtrl.projectService_ = ProjectService;
+    
+    projectCtrl.projects = projectCtrl.projectService_.query();
+
+};
+
+// 
+ProjectController.prototype = {
+    
+    
+};
+
+exports.ProjectController = ProjectController;
+},{}],11:[function(require,module,exports){
+'use strict';
+
+var ProjectsService = function($resource) {
+    
+    var projServ = this;
+    projServ.resource_ = $resource;
+    
+    return projServ.resource_('/api/project/:id', {id : '@id'} );
+    
+};
+
+exports.ProjectsService = ProjectsService;
+},{}],12:[function(require,module,exports){
 'use strict';
 var ProjectType = function () {
 
@@ -164,93 +259,4 @@ var ProjectType = function () {
 };
 
 exports.ProjectType = ProjectType;
-},{}],8:[function(require,module,exports){
-'use strict';
-
-//** CONTROLLERS
-var GameCtrl = require('./controllers/GameCtrl.js');
-var HomeCtrl = require('./controllers/HomeCtrl.js');
-var BlogCtrl = require('./blog/blog.controller.js');
-var ProjectCtrl = require('./project/project.controller.js');
-var AdminCtrl = require('./modules/admin/admin.controller.js');
-var BlogDetailCtrl = require('./blog/blogdetail.controller.js');
-
-//** DIRECTIVES
-var ProjectDir = require('./directives/project_type.directive.js');
-
-//** SERVICES
-var ProjectServ =  require('./project/project.service.js');
-var BlogServ =  require('./blog/blog.service.js');
-var AdminServ = require('./modules/admin/admin.service.js');
-
-var appRouteConfig = require('./config.js');
-
-angular.module('mainapp', ['ngRoute', 'ngResource'])
-.config(['$routeProvider', '$locationProvider', appRouteConfig.config])
-.factory('ProjectService', ProjectServ.ProjectsService)
-.factory('BlogService', BlogServ.BlogService)
-.factory('AdminService', ['$resource', AdminServ.AdminService])
-
-.directive('projectType', ProjectDir.ProjectType)
-
-.controller('GameController', GameCtrl.GameController)
-.controller('HomeController', HomeCtrl.HomeController)
-.controller('BlogController', BlogCtrl.BlogController)
-.controller('BlogDetailController', BlogDetailCtrl.BlogDetailController)
-.controller('ProjectController', ProjectCtrl.ProjectController)
-.controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.ProjectController]);
-
-
-// Inject dependencies after
-BlogCtrl.BlogController.$inject = ['BlogService'];
-BlogDetailCtrl.BlogDetailController.$inject = ['$routeParams', '$sce', 'BlogService'];
-ProjectCtrl.ProjectController.$inject = ['ProjectService'];
-
-BlogServ.BlogService.$inject = ['$resource'];
-ProjectServ.ProjectsService.$inject = ['$resource'];
-
-},{"./blog/blog.controller.js":1,"./blog/blog.service.js":2,"./blog/blogdetail.controller.js":3,"./config.js":4,"./controllers/GameCtrl.js":5,"./controllers/HomeCtrl.js":6,"./directives/project_type.directive.js":7,"./modules/admin/admin.controller.js":9,"./modules/admin/admin.service.js":10,"./project/project.controller.js":11,"./project/project.service.js":12}],9:[function(require,module,exports){
-exports.AdminController = function ($scope, AdminService) {
-
-    $scope.word = 'admin';
-
-};
-},{}],10:[function(require,module,exports){
-exports.AdminService = function($resource) {
-    
-    return $resource('/login/:id', {id : '@id'} );
-    
-};
-},{}],11:[function(require,module,exports){
-'use strict';
-
-var ProjectController = function (ProjectService) {
-
-    var projectCtrl = this;
-    projectCtrl.projectService_ = ProjectService;
-    
-    projectCtrl.projects = projectCtrl.projectService_.query();
-
-};
-
-// 
-ProjectController.prototype = {
-    
-    
-};
-
-exports.ProjectController = ProjectController;
-},{}],12:[function(require,module,exports){
-'use strict';
-
-var ProjectsService = function($resource) {
-    
-    var projServ = this;
-    projServ.resource_ = $resource;
-    
-    return projServ.resource_('/api/projects/:id', {id : '@id'} );
-    
-};
-
-exports.ProjectsService = ProjectsService;
-},{}]},{},[8])
+},{}]},{},[5])
