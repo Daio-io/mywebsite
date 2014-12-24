@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * Config controls the applications routing to different pages
+ * @param $routeProvider injected to set up the routes for the application
+ * @param $locationProvider injected to set the applications to html5 mode
+ */
+
 exports.config = function ($routeProvider, $locationProvider) {
     $routeProvider.
 

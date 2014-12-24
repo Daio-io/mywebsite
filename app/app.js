@@ -1,4 +1,8 @@
 'use strict';
+/**
+ * Main index for setting up the Angular application
+ *
+ */
 
 //** CONTROLLERS
 var GameCtrl = require('./game/game.controller.js');
