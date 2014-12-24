@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * Project controller contains functions and data for Project page
+ * @param ProjectService
+ * @constructor
+ */
 var ProjectController = function (ProjectService) {
 
     var projectCtrl = this;
