@@ -1,4 +1,10 @@
 'use strict';
+
+/**
+ * ProjectTile directive is used to create a specific tyled project tile based on the project platform
+ * @returns {A directive based on the platform of the project, e.g. web or Android}
+ * @constructor
+ */
 var ProjectType = function () {
 
     return {
