@@ -1,6 +1,11 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
+/**
+ * Blog controller contains functions and data for Blog page
+ * @param BlogService to request blogPosts
+ * @constructor
+ */
 var BlogController = function (BlogService) {
     
     var blogCtrl = this;
@@ -17,6 +22,12 @@ exports.BlogController = BlogController;
 },{}],2:[function(require,module,exports){
 'use strict';
 
+/**
+ * BlogService is used to query the backend Blog API
+ * @param $resource injected to create resource API object for Blog
+ * @returns {the Blog $resource service to query API}
+ * @constructor
+ */
 var BlogService = function($resource) {
     
     var blogServ = this;
@@ -30,6 +41,13 @@ exports.BlogService = BlogService;
 },{}],3:[function(require,module,exports){
 'use strict';
 
+/**
+ * BlogDetail controller contains functions and data for individual detailed blog posts
+ * @param $routeParams injected to get parameters from page URL
+ * @param $sce injected to allow strings to be passed as trusted HTML
+ * @param BlogService injected to query the Blog API for blogposts
+ * @constructor
+ */
 var BlogDetailController = function ($routeParams, $sce, BlogService) {
 
     var blogDetCtrl = this;
@@ -45,6 +63,11 @@ var BlogDetailController = function ($routeParams, $sce, BlogService) {
 
 BlogDetailController.prototype = {
 
+    /**
+     *
+     * @param htmlString to convert to a safe HTML for page display
+     * @returns {The trusted HTML}
+     */
     renderHtml: function (htmlString) {
         return this.sce_.trustAsHtml(htmlString);
     }
@@ -54,6 +77,12 @@ BlogDetailController.prototype = {
 exports.BlogDetailController = BlogDetailController;
 },{}],4:[function(require,module,exports){
 'use strict';
+
+/**
+ * Config controls the applications routing to different pages
+ * @param $routeProvider injected to set up the routes for the application
+ * @param $locationProvider injected to set the applications to html5 mode
+ */
 
 exports.config = function ($routeProvider, $locationProvider) {
     $routeProvider.
@@ -86,12 +115,20 @@ exports.config = function ($routeProvider, $locationProvider) {
     when('/blog/:id', {
         controller: 'BlogDetailController as blogDetCtrl',
         templateUrl: 'views/partial/blogdetail'
+    }).
+
+    otherwise({
+        templateUrl: 'views/partial/404'
     });
 
     $locationProvider.html5Mode(true);
 };
 },{}],5:[function(require,module,exports){
 'use strict';
+/**
+ * Main index for setting up the Angular application
+ *
+ */
 
 //** CONTROLLERS
 var GameCtrl = require('./game/game.controller.js');
@@ -159,6 +196,10 @@ exports.GameController = GameController;
 },{}],7:[function(require,module,exports){
 'use strict';
 
+/**
+ * HomeController contains functions and data for the Home page
+ * @constructor
+ */
 var HomeController = function () {
 
     var homeCtrl = this;
@@ -167,6 +208,9 @@ var HomeController = function () {
 
 HomeController.prototype = {
 
+    /**
+     * AboutMe object data to be displayed on the home page
+     */
     aboutMe: {
         name: 'Dai',
         description: 'MEAN Stack and Android Developer',
@@ -192,6 +236,11 @@ exports.AdminService = function($resource) {
 },{}],10:[function(require,module,exports){
 'use strict';
 
+/**
+ * Project controller contains functions and data for Project page
+ * @param ProjectService
+ * @constructor
+ */
 var ProjectController = function (ProjectService) {
 
     var projectCtrl = this;
@@ -211,6 +260,12 @@ exports.ProjectController = ProjectController;
 },{}],11:[function(require,module,exports){
 'use strict';
 
+/**
+ * ProjectService is used to query the backend Project API
+ * @param $resource injected to create resource API object for Projects
+ * @returns {the Project $resource service to query API}
+ * @constructor
+ */
 var ProjectsService = function($resource) {
     
     var projServ = this;
@@ -223,6 +278,12 @@ var ProjectsService = function($resource) {
 exports.ProjectsService = ProjectsService;
 },{}],12:[function(require,module,exports){
 'use strict';
+
+/**
+ * ProjectTile directive is used to create a specific tyled project tile based on the project platform
+ * @returns {A directive based on the platform of the project, e.g. web or Android}
+ * @constructor
+ */
 var ProjectType = function () {
 
     return {
