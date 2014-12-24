@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * HomeController contains functions and data for the Home page
+ * @constructor
+ */
 var HomeController = function () {
 
     var homeCtrl = this;
@@ -8,6 +12,9 @@ var HomeController = function () {
 
 HomeController.prototype = {
 
+    /**
+     * AboutMe object data to be displayed on the home page
+     */
     aboutMe: {
         name: 'Dai',
         description: 'MEAN Stack and Android Developer',
