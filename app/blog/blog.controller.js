@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- *
+ * Blog controller contains functions and data for Blog page
  * @param BlogService to request blogPosts
  * @constructor
  */

@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- *
+ * BlogDetail controller contains functions and data for individual detailed blog posts
  * @param $routeParams injected to get parameters from page URL
  * @param $sce injected to allow strings to be passed as trusted HTML
  * @param BlogService injected to query the Blog API for blogposts
