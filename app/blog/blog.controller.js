@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ *
+ * @param BlogService to request blogPosts
+ * @constructor
+ */
 var BlogController = function (BlogService) {
     
     var blogCtrl = this;
