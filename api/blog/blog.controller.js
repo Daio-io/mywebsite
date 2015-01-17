@@ -1,6 +1,6 @@
 'use strict';
 // Handlers files are used to group your routes logically
-// Require your handlers and add each route to the routes.js file
+// Require your handlers and add each route to the server.router.js file
 
 var BlogPost = require('./blog.model.js');
 

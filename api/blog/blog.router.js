@@ -9,4 +9,4 @@ router.get('/:id', blog.getBlogPost);
 router.post('/', blog.postBlogPost);
 router.delete('/:id', blog.deleteBlogPost);
 
-exports.router = router;
+module.exports = router;

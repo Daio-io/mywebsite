@@ -9,4 +9,4 @@ router.get('/:id', project.getProject);
 router.post('/', project.postProject);
 router.delete('/:id', project.deleteProject);
 
-exports.router = router;
+module.exports = router;
