@@ -4,7 +4,7 @@
 #clean up all node running first
 killall node
 #Use forever to run node in the background npm install -g forever
-NODE_ENV=test node index.js&
+NODE_ENV=test node index.js &
 
 gulp api-tests
 gulp app-tests
