@@ -4,7 +4,7 @@ var browserify = require('gulp-browserify');
 var rename = require('gulp-rename');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
-var clean = require('gulp-clean');
+var del = require('del');
 
 gulp.task('app-tests', function () {
     return gulp.src('./app/test/**/*.js')
@@ -41,8 +41,9 @@ gulp.task('deploy', ['clean'], function () {
 });
 
 gulp.task('clean', function () {
-    return gulp.src('./public/js', {read: false})
-        .pipe(clean());
+    del([
+        'public/js/build.js'
+    ]);
 });
 
 gulp.task('watch', function () {
