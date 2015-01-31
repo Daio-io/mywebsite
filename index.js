@@ -11,6 +11,6 @@ require('./lib/environment_context.js')(app);
 require('./lib/site.bootstrap.js')(app);
 
 // ** UPDATE db_config.js FOR CONNECTION STRINGS TO DATABASE **
-// require('./lib/database_connection.js')(app);
+require('./lib/database_connection.js')(app);
 
 require('./lib/server.js')(app);
