@@ -2,5 +2,12 @@
     node_js:
         - "0.10"
     services: mongodb
+
+    before_install:
+      - npm install -g gulp
+
+    script:
+      - npm test
+      - gulp deploy
     
     
