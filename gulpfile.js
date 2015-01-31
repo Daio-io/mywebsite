@@ -5,6 +5,7 @@ var rename = require('gulp-rename');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var del = require('del');
+var bump = require('gulp-bump');
 
 gulp.task('app-tests', function () {
     return gulp.src('./app/test/**/*.js')
@@ -30,7 +31,7 @@ gulp.task('build', ['clean'], function () {
         .pipe(gulp.dest('./public/js'))
 });
 
-gulp.task('deploy', ['clean'], function () {
+gulp.task('deploy', ['clean', 'bump'], function () {
     return gulp.src('./app/app.js')
         .pipe(browserify({}))
         .on('error', catchError)
@@ -38,6 +39,12 @@ gulp.task('deploy', ['clean'], function () {
         .pipe(ngAnnotate())
         .pipe(uglify())
         .pipe(gulp.dest('./public/js'))
+});
+
+gulp.task('bump', function () {
+    return gulp.src(['./package.json'])
+        .pipe(bump())
+        .pipe(gulp.dest('./'));
 });
 
 gulp.task('clean', function () {
