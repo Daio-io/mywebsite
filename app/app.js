@@ -9,7 +9,6 @@ var GameCtrl = require('./game/game.controller.js');
 var HomeCtrl = require('./home/home.controller.js');
 var BlogCtrl = require('./blog/blog.controller.js');
 var ProjectCtrl = require('./project/project.controller.js');
-var AdminCtrl = require('./modules/admin/admin.controller.js');
 var BlogDetailCtrl = require('./blog/blogdetail.controller.js');
 
 //** DIRECTIVES
@@ -18,7 +17,6 @@ var ProjectDir = require('./project/projectTile.directive.js');
 //** SERVICES
 var ProjectServ = require('./project/project.service.js');
 var BlogServ = require('./blog/blog.service.js');
-var AdminServ = require('./modules/admin/admin.service.js');
 
 var appRouteConfig = require('./config.js');
 
@@ -32,7 +30,6 @@ angular.module('mainapp',
 
     .factory('ProjectService', ProjectServ.ProjectsService)
     .factory('BlogService', BlogServ.BlogService)
-    .factory('AdminService', ['$resource', AdminServ.AdminService])
 
     .directive('projectType', ProjectDir.ProjectType)
 
@@ -40,9 +37,7 @@ angular.module('mainapp',
     .controller('HomeController', HomeCtrl.HomeController)
     .controller('BlogController', BlogCtrl.BlogController)
     .controller('BlogDetailController', BlogDetailCtrl.BlogDetailController)
-    .controller('ProjectController', ProjectCtrl.ProjectController)
-    .controller('AdminController', ['$scope', 'AdminService', ProjectCtrl.ProjectController]);
-
+    .controller('ProjectController', ProjectCtrl.ProjectController);
 
 // Inject dependencies after
 BlogCtrl.BlogController.$inject = ['BlogService'];
