@@ -12,7 +12,7 @@ var ProjectType = function () {
         templateUrl: 'views/partial/project_tile',
         replace: false,
         scope: {
-            project: '=projectObject',
+            project: '=projectObject'
         },
         link: function (scope, elems, attrs) {
 
