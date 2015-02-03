@@ -1,6 +1,6 @@
 var assert = require('chai').assert;
 var rest = require('restler');
-var inserted = {}
+var inserted = {};
 
 suite('API tests', function () {
 

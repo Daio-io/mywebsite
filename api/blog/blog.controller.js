@@ -47,6 +47,14 @@ exports.getAllBlogPosts = function (req, res) {
 };
 
 exports.postBlogPost = function (req, res) {
+
+    if (process.env.NODE_ENV === 'production') {
+        res.json({status: "error",
+            message: "You cannot post in live"});
+        res.end();
+        return;
+    }
+
     var blogPost = new BlogPost({
         title: req.body.title,
         short: req.body.short,
@@ -69,6 +77,14 @@ exports.postBlogPost = function (req, res) {
 };
 
 exports.deleteBlogPost = function (req, res) {
+
+    if (process.env.NODE_ENV === 'production') {
+        res.json({status: "error",
+            message: "You cannot delete in live"});
+        res.end();
+        return;
+    }
+
     BlogPost.remove({
         _id: req.params.id
     }, function (err, result) {

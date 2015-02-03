@@ -27,6 +27,7 @@ exports.getProject = function (req, res) {
 };
 
 exports.getAllProjects = function (req, res) {
+
     Project.find(function (err, found) {
         if (err) {
             res.status(404).json({
@@ -51,6 +52,13 @@ exports.getAllProjects = function (req, res) {
 };
 
 exports.postProject = function (req, res) {
+
+    if (process.env.NODE_ENV === 'production') {
+        res.json({status: "error",
+            message: "You cannot post in live"});
+        res.end();
+        return;
+    }
 
     var project = new Project({
         name: req.body.name,
@@ -77,6 +85,13 @@ exports.postProject = function (req, res) {
 };
 
 exports.deleteProject = function (req, res) {
+
+    if (process.env.NODE_ENV === 'production') {
+        res.json({status: "error",
+            message: "You cannot delete in live"});
+        res.end();
+        return;
+    }
     Project.remove({
         _id: req.params.id
     }, function (err, result) {
