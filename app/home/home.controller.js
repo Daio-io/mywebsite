@@ -18,7 +18,7 @@ HomeController.prototype = {
     aboutMe: {
         name: 'Dai',
         description: 'MEAN Stack and Android Developer',
-        contact: 'dle.williams1@gmail.com',
+        contact: 'me@daio.io',
         github: 'https://github.com/daveloper87'
     }
 

@@ -4,6 +4,6 @@
 
 MEAN Stack website
 
-This is only a first draft, loads still to do..
+This is only a first draft, still a work in progress..
 
-It has now been deployed to Heroku on a single dyno so it can be a little slow to start up. You can find it [here](https://blooming-ocean-5220.herokuapp.com/).
+It has now been deployed to Heroku on a single dyno so it can be a little slow to start up. You can find it at [Daio.io](https://dai.io/).
