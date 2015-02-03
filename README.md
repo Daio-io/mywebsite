@@ -6,4 +6,4 @@ MEAN Stack website
 
 This is only a first draft, still a work in progress..
 
-It has now been deployed to Heroku on a single dyno so it can be a little slow to start up. You can find it at [Daio.io](https://dai.io/).
+It has now been deployed to Heroku on a single dyno so it can be a little slow to start up. You can find it at [Daio.io](http://dai.io/).
