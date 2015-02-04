@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Daveloper87/mywebsite.svg)](https://travis-ci.org/Daveloper87/mywebsite)
+[![Build Status](https://travis-ci.org/Daveloper87/mywebsite.svg)](https://travis-ci.org/Daveloper87/mywebsite) [![Dependency Status](https://david-dm.org/Daveloper87/mywebsite.svg)](https://david-dm.org/daveloper87/mywebsite)
 
 ## My Website
 
