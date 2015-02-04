@@ -6,6 +6,7 @@ var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var del = require('del');
 var bump = require('gulp-bump');
+var minifyCss = require('gulp-minify-css');
 
 gulp.task('app-tests', function () {
     return gulp.src('./app/test/**/*.js')
@@ -31,7 +32,7 @@ gulp.task('build', ['clean'], function () {
         .pipe(gulp.dest('./public/js'))
 });
 
-gulp.task('deploy', ['clean', 'bump'], function () {
+gulp.task('deploy', ['clean', 'minify-css', 'bump'], function () {
     return gulp.src('./app/app.js')
         .pipe(browserify({}))
         .on('error', catchError)
@@ -49,8 +50,19 @@ gulp.task('bump', function () {
 
 gulp.task('clean', function () {
     del([
-        'public/js/build.js'
+        'public/js/build.js',
+        'public/css/daio.min.css'
     ]);
+});
+
+gulp.task('minify-css', function () {
+    del([
+        'public/css/daio.min.css'
+    ]);
+    return gulp.src('./sources/*.css')
+        .pipe(minifyCss())
+        .pipe(rename('daio.min.css'))
+        .pipe(gulp.dest('./public/css/'))
 });
 
 gulp.task('watch', function () {
