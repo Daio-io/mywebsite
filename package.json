@@ -12,7 +12,7 @@
   "author": "Daveloper87",
   "license": "ISC",
   "engines": {
-    "node": "0.10.36"
+    "node": "0.10.x"
   },
   "dependencies": {
     "body-parser": "1.11.0",
