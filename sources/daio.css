@@ -2985,7 +2985,7 @@ footer p {
 }
 
 .tile.tile-android:before {
-  background: url(../public/img/android-ribbon.png) 0 0 no-repeat;
+  background: url(../img/android-ribbon.png) 0 0 no-repeat;
   background-size: 82px 82px;
   content: '';
   height: 82px;
@@ -3001,7 +3001,7 @@ footer p {
 }
 
 .tile.tile-web:before {
-  background: url(../public/img/web-ribbon.png) 0 0 no-repeat;
+  background: url(../img/web-ribbon.png) 0 0 no-repeat;
   background-size: 82px 82px;
   content: '';
   height: 82px;
@@ -3030,7 +3030,7 @@ footer p {
     text-align: center;
 }
 .tile.tile-hot:before {
-    background: url(../images/tile/ribbon.png) 0 0 no-repeat;
+    background: url(../img/tile/ribbon.png) 0 0 no-repeat;
     background-size: 82px 82px;
     content: '';
     height: 82px;
