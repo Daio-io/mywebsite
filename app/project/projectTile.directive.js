@@ -25,10 +25,16 @@ var ProjectType = function () {
                 scope.icon = 'android_icon.png';
                 scope.css = 'tile-android';
 
-            } else if (pF === 'WEB') {
+            }
+            else if (pF === 'WEB') {
 
                 scope.icon = 'web_icon.png';
                 scope.css = 'tile-web';
+            }
+            else {
+
+                scope.icon = 'web_icon.png';
+                scope.css = 'tile-build';
             }
 
         }
