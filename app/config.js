@@ -13,11 +13,6 @@ exports.config = function ($routeProvider, $locationProvider) {
         controller: 'HomeController as homeCtrl',
         templateUrl: "/views/partial/home"
     }).
-    
-    when('/admin', {
-        controller: 'AdminController',
-        templateUrl: "/views/partial/admin"
-    }).
         
     when('/bored', {
         controller: 'GameController as gameCtrl',

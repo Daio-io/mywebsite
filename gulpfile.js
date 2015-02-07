@@ -40,7 +40,7 @@ gulp.task('clean', function () {
     ]);
 });
 
-gulp.task('build', ['clean'], function () {
+gulp.task('build', ['clean', 'minify-css'], function () {
     return gulp.src('./app/app.js')
         .pipe(browserify({}))
         .on('error', catchError)
