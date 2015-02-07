@@ -8,6 +8,7 @@ var del = require('del');
 var bump = require('gulp-bump');
 var minifyCss = require('gulp-minify-css');
 var gutil = require('gulp-util');
+var gulpList = require('gulp-list');
 
 // ** TEST TASKS ** //
 
@@ -79,8 +80,12 @@ gulp.task('watch', function () {
 
 // ** HELP TASKS ** //
 
-gulp.task('default', [], displayTasks);
-gulp.task('help', displayTasks);
+gulp.task('default', ['help'], function () {});
+gulp.task('help', function () {
+    gulp.src('./buildTasks.json')
+        .pipe(gulpList());
+
+});
 
 
 // ** Helpers ** //
@@ -92,36 +97,3 @@ function catchError(err) {
     this.emit('end');
 
 };
-
-// ** Task Options ** //
-var task_options = {
-
-    "app-tests:": "Runs the unit tests against the front end Angular Javascript",
-    "api-tests:": "Runs all tests against the API. WARN: Should only be run by npm test command",
-    "build:": "Builds the Javascript into the public js folder",
-    "deploy:": "Minfiess Css, builds minified Javascript and bumps the project version number",
-    "bump:": "Bump the project version",
-    "clean:": "Removes all currently build Javascript and Css",
-    "minify-css:": "Builds and Minfies all Css into the public Css folder",
-    "watch:": "Watches for changes to front end Javascript and builds on change",
-    "help:": "Displays this list of tasks"
-
-};
-
-function displayTasks(callback) {
-    var output = '';
-    var spacing = 0;
-    Object.keys(task_options).forEach(function(item) {
-        if (spacing < item.length) {
-            spacing = item.length + 8;
-        }
-    });
-    Object.keys(task_options).forEach(function(item) {
-        output += ' ' + gutil.colors.blue(item) +
-            new Array(spacing - item.length + 1).join(" ") +
-            task_options[item] + '\n';
-    });
-    console.log('\nAvailable Tasks:\n');
-    console.log(output);
-    callback();
-}
