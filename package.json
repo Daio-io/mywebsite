@@ -1,7 +1,7 @@
 {
   "name": "daveloper87-site",
   "repository": "https://github.com/Daveloper87/mywebsite.git",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Personal website hosted on Heroku via: http://www.Daio.io",
   "main": "index.js",
   "scripts": {
