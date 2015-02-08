@@ -3067,3 +3067,15 @@ footer p {
     font-size: 20px;
     margin: 0;
 }
+
+.blog-desc {
+    color: #202627;
+    font-size: 15px;
+    font-weight: 400;
+}
+.blog-title {
+    color: #047053;
+    text-decoration: underline;
+    font-size: inherit;
+    font-weight: 600;
+}
