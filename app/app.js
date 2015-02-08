@@ -18,6 +18,9 @@ var ProjectDir = require('./project/projectTile.directive.js');
 var ProjectServ = require('./project/project.service.js');
 var BlogServ = require('./blog/blog.service.js');
 
+//** FILTERS
+var Filters = require('./filters/filters.js');
+
 var appRouteConfig = require('./config.js');
 
 angular.module('mainapp',
@@ -37,7 +40,9 @@ angular.module('mainapp',
     .controller('HomeController', HomeCtrl.HomeController)
     .controller('BlogController', BlogCtrl.BlogController)
     .controller('BlogDetailController', BlogDetailCtrl.BlogDetailController)
-    .controller('ProjectController', ProjectCtrl.ProjectController);
+    .controller('ProjectController', ProjectCtrl.ProjectController)
+
+    .filter('reverse', Filters.reverse);
 
 // Inject dependencies after
 BlogCtrl.BlogController.$inject = ['BlogService'];
