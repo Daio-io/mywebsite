@@ -9,7 +9,7 @@ var blogPostSchema = mongoose.Schema({
 
 blogPostSchema.methods.getDateCreated = function () {
     var date = this._id.getTimestamp().getUTCDate();
-    var month = this._id.getTimestamp().getUTCMonth();
+    var month = this._id.getTimestamp().getUTCMonth() + 1; // Month starts at 0
     var year = this._id.getTimestamp().getUTCFullYear();
 
     return date + '-' + month + '-' + year;
