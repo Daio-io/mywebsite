@@ -8,9 +8,10 @@ var blogPostSchema = mongoose.Schema({
 });
 
 blogPostSchema.methods.getDateCreated = function () {
-    var date = this._id.getTimestamp().getUTCDate();
-    var month = this._id.getTimestamp().getUTCMonth() + 1; // Month starts at 0
-    var year = this._id.getTimestamp().getUTCFullYear();
+    var timeStamp = this._id.getTimestamp();
+    var date = timeStamp.getUTCDate();
+    var month = timeStamp.getUTCMonth() + 1; // Month starts at 0
+    var year = timeStamp.getUTCFullYear();
 
     return date + '-' + month + '-' + year;
 };
