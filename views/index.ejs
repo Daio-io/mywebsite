@@ -10,25 +10,12 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/daio.min.css" rel="stylesheet">
     <header>
-        <div class="container-fluid">
-            <div class="jumbotron header-board">
-                <h1>
-                    <img class="img-circle" src="img/pixel_me.gif" alt="Me">
-                    I'm Dai.
-                </h1>
-                <small>Coder, Surfer, Snowboarder</small>
-                <div>
-                    <a href="/" class="btn btn-primary">Me</a>
-                    <a href='/projects' class="btn btn-primary">Projects</a>
-                    <a href='/blog' class="btn btn-primary">Blog</a>
-                </div>
-            </div>
-        </div>
+        <% include header %>
     </header>
 </head>
 
 <body ng-app="mainapp" ng-strict-di>
-    <div ng-view=""></div>
+<div ng-view=""></div>
 </body>
 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
