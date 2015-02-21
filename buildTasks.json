@@ -6,6 +6,6 @@
     "bump:": "Bump the project version",
     "clean:": "Removes all currently build Javascript and Css",
     "minify-css:": "Builds and Minfies all Css into the public Css folder",
-    "watch:": "Watches for changes to front end Javascript and builds on change",
+    "watch:": "Watches for changes to front end Javascript and CSS. Builds on change",
     "help:": "Displays this list of tasks"
 }

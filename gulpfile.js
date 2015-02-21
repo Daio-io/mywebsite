@@ -73,8 +73,11 @@ gulp.task('minify-css', function () {
 // ** WATCH TASKS ** //
 
 gulp.task('watch', function () {
+    gulp.watch('./sources/*.css', ['minify-css']).on('change', function (event) {
+        console.log('File ' + event.path + ' was ' + event.type + ', Creating...');
+    });
     gulp.watch('./app/**/*.js', ['build']).on('change', function (event) {
-        console.log('File ' + event.path + ' was ' + event.type + ', Building...');
+        console.log('File ' + event.path + ' was ' + event.type + ', Bundling...');
     });
 });
 
