@@ -7,7 +7,6 @@ var uglify = require('gulp-uglify');
 var del = require('del');
 var bump = require('gulp-bump');
 var minifyCss = require('gulp-minify-css');
-var gutil = require('gulp-util');
 var gulpList = require('gulp-list');
 
 // ** TEST TASKS ** //
