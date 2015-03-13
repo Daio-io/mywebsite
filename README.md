@@ -6,6 +6,5 @@
 
 MEAN Stack website
 
-This is only a first draft, still a work in progress..
-
-It has now been deployed to Heroku on a single dyno so it can be a little slow to start up. You can find it at [Daio.io](http://www.daio.io/).
+Development has stopped on this version in replace of a [new website](https://github.com/Daveloper87/daio.io)
+which is now hosted on: [Daio.io](http://www.daio.io/).
